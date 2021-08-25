@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>파라미터 처리</title>
+</head>
+<body>
+    <h1>get 방식 요청을 전송하는 FORM</h1>
+    <!--action="요청 주소"-->
+    <form action="/search" method="get">
+        검색어 <input type="text" name="keyword"/>
+        <input type="submit" value="검색" />
+    </form>
+
+    <h1>post 방식 요청을 전송하는 FORM</h1>
+    <!--action="요청 주소"-->
+    <form action="/search" method="post">
+        검색어 <input type="text" name="keyword"/>
+        <input type="submit" value="검색" />
+    </form>
+
+    <h1>파일 업로드</h1>
+    <!--multipart/for-data : 큰 데이터를 보내니 쪼개라는 뜻-->
+    <form action="/upload" method="post" enctype="multipart/form-data">
+        파일 <input type="file" name="file"/>
+        <input type="submit" value="업로드" />
+    </form>
+</body>
+</html>
