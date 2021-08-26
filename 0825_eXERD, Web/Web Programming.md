@@ -147,11 +147,13 @@
 
 
 
-## 3 실행 
+## 3.실행 
+
+- :file_folder:pythonProject 프로젝트 생성할 것
+
+### 1) 기본 실행 소스코드
 
 
-
-### 1) 기본 실행 소스코드 
 
 📃​​ main.py
 
@@ -222,7 +224,7 @@ app.run(host = '0.0.0.0')
 
 ![image-20210825195323414](image/image-20210825195323414.png)
 
-## 3 URL 처리
+## 4.URL 처리
 
 
 
@@ -291,7 +293,7 @@ def tistory(num):
 
 
 
-## 4.HTML
+## 5.HTML
 
 ### 1) HTML의 구성
 
@@ -325,7 +327,7 @@ def tistory(num):
 
 
 
-## 5.Parameter 처리
+## 6.Parameter 처리
 
 - Parameter:클라이언트가 서버에게 전송하는 데이터
 - 처리하는 내부에서는 Parameter말 대신에 Argument라는 용어를 사용합니다
@@ -387,7 +389,7 @@ def tistory(num):
 
 
 
-## 6.템플릿 엔진
+## 7.템플릿 엔진
 
 - flask에서는 `render_template('출력할 파일의 경로')`를 요청 처리 메소드가 리턴하면 파일을 출력할 수 있습니다.
 - 기본적으로는 :file_folder:templates 디렉토리에 파일이 존재해야 합니다.
@@ -571,7 +573,7 @@ def upload():
 
 
 
-## 7.REST API
+## 8.REST API
 
 - FUll STACK 기술에서 가장 중요한 기술 중 하나는 서버에서 데이터를 넘기는 것이고 클라이언트에서는 이 데이터를 가져와서 출력하는 것인데 웹 클라이언트에서는 ajax로 구현합니다.
 
@@ -653,7 +655,7 @@ def xml():
 
 
 
-## 8.서버의 데이터 출력
+## 9.서버의 데이터 출력
 
 - 서버에서 html에게 데이터를 넘기고자 할 때는 
   `render_template('템플릿 파일', 데이터이름 = 실제 데이터)`을 리턴
@@ -727,7 +729,11 @@ def script():
 
 
 
-## 9.Web Application의 구조
+# MVC패턴
+
+
+
+## 1.Web Application의 구조
 
 `요청(Request) -> Web Server -> Application Server -> 응답(Response)`
 
@@ -748,7 +754,7 @@ def script():
 
 
 
-## 10.프로젝트의 기본 구조
+## 2.프로젝트의 기본 구조
 
 - DAO : Data Access Object - Model 
   - **Service** : 사용자의 요청을 처리해주는 클래스
@@ -763,7 +769,7 @@ def register(**args):
 
 
 
-## 11.MySQL 연동
+## 3.MySQL 연동
 
 - Mysql은 **데이터베이스 단위로 작업**을 합니다. 
 
@@ -859,17 +865,126 @@ order by
 
 
 
-### 3) 프로젝트 생성
+## 4.프로젝트 생성
 
-- :file_folder:templates 디렉토리를 생성
+- :file_folder: db 프로젝트를 생성하고 그 바로 밑에 :file_folder:templates 디렉토리를 생성
 - model의 역할을 수행할 📃model.py 파일을 생성(파일의 이름은 바꿔도 됩니다)
 - controller의 역할을 수행할 📃controller.py 파일을 생성
 - view들의 모임 역할을 수행할 :file_folder:templates 디렉토리를 생성(디렉토리명은 반드시​ :file_folder:templates로 생성해야 합니다.)
 
-
-
-
-### 4) model.py 파일
+## 5.model.py 파일
 - 데이터베이스 작업 관련 클래스를 생성
 - MySQL을 사용할 것이라서 pymysql패키지를 설치
   - [File] - [Settings] - [Python Interpreter] - [pyMSQL입력] - 설치
+
+
+
+### 구조
+
+```
+db
+├── 📁templates 				# view들의 모임 역할
+|	└── 📝index.html  				
+├── 📁venv
+├── 📝controller.py				# controller의 역할을 수행
+└── 📝model.py					# model의 역할을 수행
+```
+
+
+
+📁templates/📝index.html
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <h2>상품 목록</h2>
+    <table border="1">
+        <tr class="header">
+            <th align="center" width="80">상품아이디</th>
+            <th align="center" width="320">상품이름</th>
+            <th align="center" width="100">가격</th>
+        </tr>
+        {% for item in data %}
+        <tr>
+
+            <th align="center" width="80">{{item.itemid}}</th>
+            <th align="center" width="320">{{item.itemname}}</th>
+            <th align="center" width="100">{{item.price}}   </th>
+
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>
+```
+
+
+
+📝controller.py
+```python
+from flask import Flask, request, render_template
+# model.py 임포트
+import model
+
+app = Flask(__name__)
+
+@app.route('/')
+def index():
+
+    dao = model.Dao()
+    data = dao.selectall()
+    return render_template('index.html', data=data)
+
+app.run(host='0.0.0.0', debug=True)
+```
+
+📝model.py
+```python
+import pymysql
+
+class Dao:
+    # 데이터베이스 접속 메소드
+    def connect(self):
+        self.con = pymysql.connect(host='localhost',
+                                   port=3306,
+                                   user='root',
+                                   password='1234',
+                                   db='adam',
+                                   charset='utf8')
+        self.cursor = self.con.cursor()
+
+    # 데이터베이스 연결을 해제하는 메소드
+    def close(self):
+        self.con.cursor()
+
+
+    # 테이블의 전체 데이터를 가져오는 메소드
+    def selectall(self):
+        # 데이터베이스 접속 연결
+        self.connect()
+        print(self.connect)
+        # 수행할 SQL 문장을 생성
+        self.cursor.execute('select * from item')
+        # 실행
+        data = self.cursor.fetchall()
+
+        li = []
+        # 읽어온 결과를 순회하면서
+        for imsi in data:
+            # 첫번째와 두번째 세번째 컬럼을 dict에 저장
+            dic = {}
+            dic['itemid'] = imsi[0]
+            dic['itemname'] = imsi[1]
+            dic['price'] = imsi[2]
+            # dict를 list에 저장
+            li.append(dic)
+        # 데이터베이스 접속 해제
+        self.close()
+        
+        return li
+        
+```
