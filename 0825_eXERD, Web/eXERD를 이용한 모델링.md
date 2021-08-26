@@ -2,13 +2,14 @@
 
 수업 참고자료 : [https://ggangpae1.tistory.com/188](https://ggangpae1.tistory.com/188)
 
-<scrpit>
-  summary:hover{
-    color:red;
-}
-</script>
+<style>
+    summary.tgg {
+      color: #1c87c9;
+    }
+</style>
+
 <details>
-  <summary>text</summary>
+  <summary><span id='tgg'>text</span></summary>
 <div markdown="1" style="color:red" >
 
 ```python
