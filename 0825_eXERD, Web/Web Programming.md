@@ -922,8 +922,6 @@ db
 </html>
 ```
 
-
-
 📝controller.py
 ```python
 from flask import Flask, request, render_template
@@ -942,7 +940,10 @@ def index():
 app.run(host='0.0.0.0', debug=True)
 ```
 
+
+
 📝model.py
+
 ```python
 import pymysql
 
@@ -988,3 +989,4 @@ class Dao:
         return li
         
 ```
+3_PCA와 RandomForest(noVIF)
