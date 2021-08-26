@@ -1,12 +1,10 @@
 # eXERD를 이용한 실무에서의 데이터 모델링
 
 수업 참고자료 : [https://ggangpae1.tistory.com/188](https://ggangpae1.tistory.com/188)
-
-<style>
-    summary.tgg {
-      color: #1c87c9;
-    }
-</style>
+<details>
+    <summary style='color:red'>Details</summary>
+    Something small enough to escape casual notice.
+</details>
 
 <details>
   <summary><span id='tgg'>text</span></summary>
