@@ -1,23 +1,6 @@
 # eXERD를 이용한 실무에서의 데이터 모델링
 
 수업 참고자료 : [https://ggangpae1.tistory.com/188](https://ggangpae1.tistory.com/188)
-<details>
-    <summary style='color:red'>Details</summary>
-    Something small enough to escape casual notice.
-</details>
-
-<details>
-  <summary><span id='tgg'>text</span></summary>
-<div markdown="1" style="color:red" >
-
-```python
-from flask import Flask, request, render_template
-# model.py 임포트
-import model
-```
-
-</div>
-</details>
 
 ## 1.실무에서의 데이터 모델링
 - 모델링 도구를 이용
