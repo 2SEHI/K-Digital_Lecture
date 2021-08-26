@@ -4,7 +4,7 @@
 
 
 <details>
-  <summary >안녕하세요</summary>
+  <summary><span style="color: red;">text</span></summary>
 <div markdown="1" style="color:red" >
 
 ```python
