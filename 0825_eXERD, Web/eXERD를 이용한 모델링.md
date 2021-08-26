@@ -4,8 +4,8 @@
 
 
 <details>
-  <summary style="color:red">안녕하세요</summary>
-<div markdown="1">
+  <summary >안녕하세요</summary>
+<div markdown="1" style="color:red" >
 
 ```python
 from flask import Flask, request, render_template
