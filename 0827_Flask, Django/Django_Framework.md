@@ -103,7 +103,7 @@ djangoapp # pycharm프로젝트
 
 manage.py 파일을 선택하고 마우스 오른쪽을 클릭해서 Modify Run Configuration을 실행한 후 Parameters에 runserver라고 입력한 후 manage.py를 실행하면 아래와 같이 djago접속화면이 뜹니다.
 
-![image-20210827152659355](C:\Users\admin\AppData\Roaming\Typora\typora-user-images\image-20210827152659355.png)
+![image-20210827152659355](images/image-20210827152659355.png)
 
 
 
@@ -384,4 +384,4 @@ def index(request):
 </html>
 ```
 
-![image-20210827163907031](C:\Users\admin\Desktop\blog\0827_\images\image-20210827163907031.png)
+![image-20210827163907031](images/image-20210827163907031.png)
