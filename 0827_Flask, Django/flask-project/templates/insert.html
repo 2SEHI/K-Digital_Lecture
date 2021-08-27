@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>삽입화면</title>
+</head>
+<body>
+    <form method="post" enctype="multipart/form-data">
+
+        <table>
+            <tr>
+                <th>아이템 이름</th>
+                <td><input type="text" name="itemname"></td>
+            </tr>
+            <tr>
+                <th>아이템 가격</th>
+                <td><input type="text" name="price"></td>
+            </tr>
+            <tr>
+                <th>아이템 설명</th>
+                <td><textarea name="description"></textarea></td>
+            </tr>
+            <tr>
+                <th>이미지</th>
+                <td><input type="file" name="pictureurl" accept="image/*"></td>
+            </tr>
+        </table>
+        <input type="submit" id="insertbtn" value="삽입" />
+    </form>
+</body>
+</html>
