@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <input type="button" id="insertbtn" value="삽입" />
+    <h2>상품 목록</h2>
+    <table border="1">
+        <tr class="header">
+            <th align="center" width="80">상품아이디</th>
+            <th align="center" width="320">상품이름</th>
+            <th align="center" width="100">가격</th>
+        </tr>
+        {% for item in data %}
+        <tr>
+
+            <th align="center" width="80">{{item.itemid}}</th>
+            <th align="center" width="320">
+                <!-- -->
+                <a href="detail/{{item.itemid}}">
+                {{item.itemname}}</a></th>
+            <th align="center" width="320">{{item.itemname}}</th>
+            <th align="center" width="100">{{item.price}}   </th>
+
+        </tr>
+        {% endfor %}
+    </table>
+    <!-- 서버에서 그래프를 만들어서 저장하여 출력-->
+    <div><img src="{{url_for('static',filename='img/')}}graph.png"/></div>
+    <!-- 서버에서 데이터만 클라이언트에 넘겨주어서 출력-->
+    <div><img src='/plot'/></div>
+<script>
+    <!-- 삽입 버튼의 id가져오기   -->
+    insertbtn = document.getElementById('insertbtn')
+    <!--  삽입 버튼을 누를 때 insert  -->
+    insertbtn.addEventListener('click',function(event){
+        location.href = 'insert';
+    });
+</script>
+</body>
+</html>
