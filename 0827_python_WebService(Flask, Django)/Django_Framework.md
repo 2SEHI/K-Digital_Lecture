@@ -62,7 +62,9 @@ PS C:\Users\admin\PycharmProjects\djangoapp\mysite> python ./manage.py startapp 
 
 
 
-### 5) 실행
+### 5) 실행방법
+
+#### 1.터미널에서 실행
 
 - 터미널에서 `python manage.py runserver IP주소:포트번호`
   - 포트번호를 생략하면 8000번이 되므로 ip주소를 생략해도 됨
@@ -70,6 +72,21 @@ PS C:\Users\admin\PycharmProjects\djangoapp\mysite> python ./manage.py startapp 
 ```
 PS C:\Users\admin\PycharmProjects\djangoapp\mysite> python manage.py runserver
 ```
+
+기술마다 기본포트번호가 정해져있는데 기본포트번호를 설정하게 되면 애플리케이션이 어떤 기술로 만들어졌는지 알 수 있게 됩니다.
+
+#### 2.pytcharm에서 실행
+
+- manage.py 파일을 선택하고 마우스 오른쪽을 눌러서 [Modify Run Configuration]을 실행해서 Parameter에 runserver 라고 입력하고 다음부터는 manage.py파일을 실행하면 됩니다.
+
+
+
+#### 3.IP주소
+
+- 동일한 컴퓨터라면 브라우저에서 localhost:8000 으로 입력하면 됩니다. 
+- 외부에서 접속이 가능한지 확인하고자 하면 자신의 컴퓨터에서 127.0.0.1:8000이라고 입력하면 되고 다른 컴퓨터에서 확인하려면 IP주소:8000이라고 입력하면 됩니다. 
+- 집같은 곳에서는 wifie가 같거나 동일한 공유기로 연결된 경우에만 접속이 가능하고 외부에서는 접속이 안됩니다.
+- 외부에서도 접속이 가능하도록 하고자 하면 외부 클라우드 환경(AWS, GCP, MS Azure, 더존 등)이나 Django와 Database를 지원해주는 웹 호스팅 업체에 업로드를 하거나 집에 있는 IP공유기의 포트포워딩을 설정하면 됩니다.
 
 
 
@@ -100,6 +117,8 @@ djangoapp # pycharm프로젝트
 ```
 
 
+
+### 실행하기
 
 manage.py 파일을 선택하고 마우스 오른쪽을 클릭해서 Modify Run Configuration을 실행한 후 Parameters에 runserver라고 입력한 후 manage.py를 실행하면 아래와 같이 djago접속화면이 뜹니다.
 
