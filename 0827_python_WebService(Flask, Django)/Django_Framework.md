@@ -79,14 +79,14 @@ PS C:\Users\admin\PycharmProjects\djangoapp\mysite> python manage.py runserver
 djangoapp # pycharm프로젝트
 ├── 📁mysite									# 프로젝트
 |	├──📁mydjango								# 애플리케이션
-|	|	└──📁migrations
+|	|	└──────📁migrations
 |	|		├──📃__init__.py
 |	|		├──📃admin.py
 |	|		├──📃apps.py
 |	|		├──📃models.py
 |	|		├──📃tests.py
 |	|		└──📃views.py
-|   ├───📁mysite								#django의 프로젝트
+|	├──────📁mysite								#django의 프로젝트
 |	|	├──📃__init__.py
 |	|	├──📃asgi.py
 |	|	├──📃settings.py						# 프로젝트 설정 파일. 모든 설정이 이루어짐
