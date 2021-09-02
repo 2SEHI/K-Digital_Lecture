@@ -1,0 +1,12 @@
+div.body {
+    margin-top:50px;
+    margin-bottom:50px;
+}
+
+tr.header{
+    background: #C9BFED;
+}
+
+tr.record{
+    background: #EDEDED;
+}

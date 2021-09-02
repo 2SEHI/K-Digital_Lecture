@@ -1247,6 +1247,7 @@ def insert(request):
 ## 12.이미지 출력 위치 수정
 
 기존의 static경로를 `<td><img src="{% get_static_prefix %}img/{{item.pictureurl}}"></td>`에서 
+
 `<td><img src="{{item.pictureurl.url}}"></td>`로 수정합니다. 만약 이미지 크기가 너무 크면 이미지 사이즈를 width와 height로 조정합니다.
 
 
@@ -1288,9 +1289,13 @@ Restful 은 서버에서 동일한 요청은 하나의 메소드로 응답하도
 - 클라이언트의 요청에 응답할 때 뷰를 만들어서 제공하지 말고 데이터를 전송하도록 만드는 것이 등장합니다. 
   - 반응형 웹 : 화면크기에 반응 
   - Progressive Web : 표준을 준수하는 [브라우저](https://ko.wikipedia.org/wiki/웹_브라우저)를 사용하는 어떠한 플랫폼에서라도 동작하도록 고안
+  
 - 데이터를 전송하는데 가장 많이 쓰이던 포맷은 XMl(태그를 이용)이고 요즘 가장 많이 사용하는 포맷은 JSON입니다.
+
 - 우리 서버에서 데이터의 전체 데이터를 JSON포맷으로 전송하도록 구성해보겠습니다
+
 - django에서는 모델의 구조를 dictionary로 만들어주면 됩니다.
+  
   *용어 주의❗ dictionary를 dict나 사전으로 쓰지말것. set, tuple같은 용어도 해석하지말고 문자 그대로로 사용할 것*
 
 

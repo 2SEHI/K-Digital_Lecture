@@ -1,0 +1,32 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Django</title>
+</head>
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+<body>
+    <p><a href="insert">데이터 삽입></a></p>
+    <div align="center" class="body">
+        <h3>상품 목록 화면</h3>
+        <table border ='1'>
+            <tr class="header">
+                <th align="center" width="80">ITEMID</th>
+                <th align="center" width="320">ITEMNAEM</th>
+                <th align="center" width="100">PRICE</th>
+            </tr>
+            {% for item in data %}
+            <tr class="header">
+                <td align="center" width="80">{{item.itemid}}</td>
+                <td align="center" width="320">
+                    <a href="detail/{{item.itemid}}">{{item.itemname}}
+                    </a>
+                </td>
+                <td align="right" width="100">{{item.price}}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+</body>
+</html>

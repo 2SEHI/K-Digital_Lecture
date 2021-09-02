@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <h3>데이터 삽입</h3>
+        <form method ="post" enctype="multipart/form-data"/>{% csrf_token %}
+        아이템 이름<input type="text" name="itemname"/><br/>
+        아이템 가격<input type="text" name="price"/><br/>
+        설명<input type="text" name="description"/><br/>
+        <!--accept : 지정한 형식의 파일만 선택할 수 있게 지정함 -->
+        이미지<input type="file" name="pictureurl" accept="image/*"/><br/>
+        <input type="submit" value="삽입"/>
+        </form>
+</body>
+</html>

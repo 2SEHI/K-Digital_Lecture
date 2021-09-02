@@ -1,0 +1,30 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>상세 보기</title>
+</head>
+<body>
+  <table>
+    <tr>
+      <th>ITEMNAME</th>
+      <td>{{item.itemname}}</td>
+    </tr>
+    <tr>
+      <th>PRICE</th>
+      <th>{{item.price}}</th>
+    </tr>
+    <tr>
+      <th>DESCRIPTION</th>
+      <th>{{item.description}}</th>
+    </tr>
+    <tr>
+      <td>PICTUREURL</td>
+      <td><img src="{{item.pictureurl.url}}" width="300", height="400"></td>
+    </tr>
+  </table>
+<a href="../">목록으로 돌아가기</a>
+
+</body>
+</html>
