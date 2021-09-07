@@ -1,6 +1,6 @@
 강화학습 수업
 
-- [강화학습개념, 벨만 방정식](../0902_python_WebService(Django), Reinforcement/RL(MDP, Bellman Equation).md)
+- [강화학습개념, 벨만 방정식](../0902_python_WebService(Django)%2C%20RL/RL(MDP%2C%20Bellman%20Equation).md)
 
 
 
@@ -414,8 +414,8 @@ Grid World와 같은 문제는 Dynamic Programming이 더 좋은 성능을 낼 �
 <div style="text-align:center"><img src="https://user-images.githubusercontent.com/58774664/132294573-06e49f4a-7efa-4df1-b8c3-147ab97b92ad.png" alt="image" style="zoom:80%;" /></div>
 
 여러 개의 층을 이용해서 하나의 직선으로 해결하기 어려운 문제를 해결합니다. 이때 하나의 선이 뉴런 즉 층이라고 생각하면 됩니다.
+<div style="text-align:center"><img src="https://user-images.githubusercontent.com/58774664/132329549-d7b7d27c-5cf2-4ef2-869f-c1fc81de384e.png" alt="image-20210907152338537"  /></div>
 
-<div style="text-align:center"><img src="C:\Users\admin\AppData\Roaming\Typora\typora-user-images\image-20210907152338537.png" alt="image-20210907152338537" style="zoom:100%;" /></div>
 
 ## 2) DNN(Deep Neural Network)
 
