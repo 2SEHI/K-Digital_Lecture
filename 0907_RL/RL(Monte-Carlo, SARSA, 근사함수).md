@@ -144,7 +144,7 @@
 
 ## 5) 예제 실행 - 4번째  section까지
 
-#### 소스파일 : [Gridworld](../Gridworld) 의 mc.py를 실행
+#### 소스파일 : [Gridworld](./Gridworld) 의 📄mc.py를 실행
 
 #### 블랙잭 규칙
 
@@ -174,13 +174,13 @@ pip install scikit-image
 #### 파일 설치 및 실행
 1. img디렉토리는 GridWorld예제에서 모두 공통으로 사용하므로 삽입
 
-   1.1 img디렉토리의 위치에 따라 environmont.py파일의 이미지 파일 경로를 수정 - 루트 디렉토리에 배치하고 나머지 파일을 디렉토리를 만들어서 배치하면 수정할 필요가 없습니다
+   1.1 img디렉토리의 위치에 따라 📄environmont.py파일의 이미지 파일 경로를 수정 - 루트 디렉토리에 배치하고 나머지 파일을 디렉토리를 만들어서 배치하면 수정할 필요가 없습니다
 
 2. 파일을 복사해서 실행
 
-3. environment.py이외의 파일을 실행
+3. 📄environment.py이외의 파일을 실행
 
-   3.1 environmentpy파일은 환경을 설정하는 파일로 실행하지 않음
+   3.1 📄environment.py파일은 환경을 설정하는 파일로 실행하지 않음
 
 ![blackjack](https://user-images.githubusercontent.com/58774664/132298567-7d9b50a8-ac53-4f48-a118-d7d335373cb9.png)
 
@@ -275,9 +275,9 @@ pip install scikit-image
 
 ## 3) SARSA 예제
 
-- 소스파일 : [Gridworld](../Gridworld/Salsa) 의 agent.py를 실행
+- 소스파일 : [Gridworld](./Gridworld/Salsa)  의 📄agent.py를 실행
 
-- environmentpy는 게임의 규칙에 대한 파일입니다.
+- 📄environment.py는 게임의 규칙에 대한 파일입니다.
 
 <div style="text-align:center"><img src="https://user-images.githubusercontent.com/58774664/132307985-694663db-7020-4a45-8f1b-b2e565663a80.gif" alt="Sarsa1" style="zoom:80%;" /></div>
 
@@ -296,14 +296,20 @@ pip install scikit-image
 # 7.q-learning
 
 - q-learning은 현재 행동과 다음 행동을 분리시키는 방식입니다.
+
 - 현재행동의 보상이 다음 행동의 보상보다 크다면 다음행동을 취할 필요가 없어지므로 다음행동과 독립적으로 계산되도록 하기 위해서 다음행동을 제거합니다.
   - SARSA : [현재상태(S), 현재 행동(A), 다음 보상(R), 다음 상태(S), 다음 행동(A)] 
   - q-learning : SARSA : [현재상태(S), 현재 행동(A), 다음 보상(R), 다음 상태(S)]
+  
 - 이렇게 하면 이전에 학습한 내용과 독립적으로 학습을 하게 됩니다.
+
 - 벨만 최적 방정식을 이용하는 가치 이터레이션과 유사해집니다.
+
 - 이 방식이 이후에 많은 강화 학습 알고리즘의 토대가 되었습니다.
 
 - q-learning과 SARSA의 다른점은 학습할 때 사용하는 데이터와 수식이며 나머지는 같습니다.
+
+  소스파일 : [Gridworld](./Gridworld/Q_Learning)의 📄agent.py실행 
 
 <div style="text-align:center"><img src="https://user-images.githubusercontent.com/58774664/132308001-e17d60dc-0195-4c71-89a6-9588feda1a15.gif" alt="q-learning1" style="zoom:67%;" /><img src="https://user-images.githubusercontent.com/58774664/132307992-9c7e2e89-b578-4e64-97c5-a9611c006f88.gif" alt="q-learning2" style="zoom:67%;" /></div>
 
@@ -571,7 +577,7 @@ Grid World와 같은 문제는 Dynamic Programming이 더 좋은 성능을 낼 �
 
 
 
-### 소스파일 : [Gridworld](../Gridworld/DeepSALSA) 의 train.py를 실행
+### 소스파일 : [Gridworld](./Gridworld/DeepSALSA) 의 📄train.py를 실행
 
 ```
 GridWorld
