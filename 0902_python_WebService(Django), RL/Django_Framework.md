@@ -1,7 +1,7 @@
 # Django Framework
 
 - python의 Web Application Framework로 Framework자체가 Python으로 개발됨
-- http://www.dhangoproject.com에서 정보를 제공
+- [http://www.dhangoproject.com](http://www.dhangoproject.com) 에서 정보를 제공
 - 설치 : pip install Django
 
 
@@ -598,7 +598,7 @@ def index(request):
 
   - 데이터베이스 자료형에 따라 여러가지 필드 속성이 정의되어 있습니다.
 
-    [❗기존 관계형 데이터베이스의 문제점]()
+    [❗기존 관계형 데이터베이스의 문제점](../0830_python_WebService(Django)/관계형%20데이터베이스%20사용의%20문제점.md)
 
 - 유효ID
   - 노트북과 핸트폰의 유효ID를 알고 있으면 찾을 수 있음
@@ -1356,7 +1356,9 @@ def itemjson(request):
 
 
 
-# 최종 프로젝트 구조
+
+
+# 프로젝트 최종 구조
 
 ```
 djangoapp 										# pycharm프로젝트

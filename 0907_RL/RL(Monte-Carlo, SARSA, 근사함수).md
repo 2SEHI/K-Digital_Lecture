@@ -1,4 +1,4 @@
-강화학습 수업
+### **강화학습 수업**
 
 - [강화학습개념, 벨만 방정식](../0902_python_WebService(Django)%2C%20RL/RL(MDP%2C%20Bellman%20Equation).md)
 
@@ -583,7 +583,7 @@ GridWorld
 └── 📃train.py														# 실행 파일
 ```
 
-<div style="text-align:center"><img src="https://user-images.githubusercontent.com/58774664/132311359-9a32f6b2-e2fd-4ad8-af75-734f217f6c19.gif" alt="deep-sarsa" style="zoom: 80%;" /><img src="C:\Users\admin\Downloads\deep-sarsa100.gif" alt="deep-sarsa100" style="zoom:80%;" /></div>
+<div style="text-align:center"><img src="https://user-images.githubusercontent.com/58774664/132311359-9a32f6b2-e2fd-4ad8-af75-734f217f6c19.gif" alt="deep-sarsa" style="zoom: 80%;" /><img src="https://user-images.githubusercontent.com/58774664/132330740-099e7e96-5e5f-49ce-b103-58cfb769f349.gif" alt="deep-sarsa100" style="zoom:80%;" /></div>
 
 <div style="text-align:center">왼쪽 : 실행 5회차, 오른쪽 : 실행 100회차</div>
 
