@@ -144,7 +144,7 @@
 
 ## 5) 예제 실행 - 4번째  section까지
 
-#### 소스파일 : [Gridworld](./Gridworld) 의 📄mc.py를 실행
+#### 소스파일 : [GridWorld](./GridWorld) 의 📄mc.py를 실행
 
 #### 블랙잭 규칙
 
@@ -275,7 +275,7 @@ pip install scikit-image
 
 ## 3) SARSA 예제
 
-- 소스파일 : [Gridworld](./Gridworld/Salsa)  의 📄agent.py를 실행
+- 소스파일 : [GridWorld](./GridWorld/Salsa)  의 📄agent.py를 실행
 
 - 📄environment.py는 게임의 규칙에 대한 파일입니다.
 
@@ -309,7 +309,7 @@ pip install scikit-image
 
 - q-learning과 SARSA의 다른점은 학습할 때 사용하는 데이터와 수식이며 나머지는 같습니다.
 
-  소스파일 : [Gridworld](./Gridworld/Q_Learning)의 📄agent.py실행 
+  소스파일 : [GridWorld](./GridWorld/Q_Learning)의 📄agent.py실행 
 
 <div style="text-align:center"><img src="https://user-images.githubusercontent.com/58774664/132308001-e17d60dc-0195-4c71-89a6-9588feda1a15.gif" alt="q-learning1" style="zoom:67%;" /><img src="https://user-images.githubusercontent.com/58774664/132307992-9c7e2e89-b578-4e64-97c5-a9611c006f88.gif" alt="q-learning2" style="zoom:67%;" /></div>
 
@@ -577,7 +577,7 @@ Grid World와 같은 문제는 Dynamic Programming이 더 좋은 성능을 낼 �
 
 
 
-### 소스파일 : [Gridworld](./Gridworld/DeepSALSA) 의 📄train.py를 실행
+### 소스파일 : [GridWorld](./GridWorld/DeepSALSA) 의 📄train.py를 실행
 
 ```
 GridWorld
