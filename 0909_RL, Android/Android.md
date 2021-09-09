@@ -582,7 +582,7 @@ textView의 하위 클래스로 눌러서 동작을 수행하고자 할 때 사�
 
 ### - 출력화면
 
-<img src="C:\Users\admin\AppData\Roaming\Typora\typora-user-images\image-20210909173430504.png" alt="image-20210909173430504" style="zoom: 67%;" />
+<img src="https://user-images.githubusercontent.com/58774664/132661818-dcdfeb06-7bb5-4bce-9e47-0dede026cca0.png" alt="image-20210909173430504" style="zoom:67%;" />
 
 
 
