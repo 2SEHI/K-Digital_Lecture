@@ -989,4 +989,3 @@ class Dao:
         return li
         
 ```
-3_PCA와 RandomForest(noVIF)
