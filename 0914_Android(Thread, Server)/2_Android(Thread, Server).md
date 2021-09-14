@@ -124,7 +124,7 @@ MainActivity.java
 
 1부터 10까지 출력이 될 것이라고 예상했지만 10만 1번 출력됩니다.
 
-![valueCount](C:\Users\admin\Downloads\valueCount.png)
+![valueCount](https://user-images.githubusercontent.com/58774664/133275150-639dff01-f839-48e0-a014-804ea5ca71d7.png)
 
 
 
