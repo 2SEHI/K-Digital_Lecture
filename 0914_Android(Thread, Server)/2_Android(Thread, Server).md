@@ -167,7 +167,7 @@ onCreate()메소드를 수정하여 위에서 생성한 ValueThread클래스의 
 
 #### - 예외발생이란?
 
-여러개의 스레드에서 동시에 UI를 갱신하려고 하면 충돌이 생기기 때문에 MainThread에서만 UI를 갱신할 수 있으며, 백그라운드 스레드에서 MainThread를 거치지 않고 직접 화면 갱신을 하면 `CalledFromWrongThreadException `이 발생합니다. 그래서 백그라운드 Thread와 MainThread와의 통신을 연결하는 역할을 할 Handler가 필요합니다.
+여러개의 스레드에서 동시에 UI를 갱신하려고 하면 충돌이 생기기 때문에 MainThread에서만 UI를 갱신할 수 있으며, 백그라운드 Thread에서 MainThread를 거치지 않고 직접 화면 갱신을 하면 `CalledFromWrongThreadException `이 발생합니다. 그래서 백그라운드 Thread와 MainThread와의 통신을 연결하는 역할을 할 Handler가 필요합니다.
 
 ```java
 	@Override
@@ -190,12 +190,12 @@ onCreate()메소드를 수정하여 위에서 생성한 ValueThread클래스의 
 
 
 
-### 5) Handler인스턴스 생성 🎈
+### 5) Handler인스턴스 생성 
 
-Handler(Thread간의 통신을 위한)
+Handler : 백그라운드 Thread에서 MainThread간의 통신을 연결하는 역할을 해줍니다.
 
-- Anonumous class를 생성하면 나타나는 경고는 파라미터에 `Looper.getMainLooper()` 를 설정해주면 사라집니다.
-- `@Override` 를 선언해주면 상속메소드명을 틀리게 작성했을 때 컴파일에러를 발생시켜 메소드명 실수를 줄여줍니다.
+- Anonymous class를 생성하면 경고가 나타나는데 Handler 파라미터에 Main Thread가 사용하는 *Looper* 즉 Main *Looper*를 반환하도록 해주는 `Looper.getMainLooper()` 를 설정해주면 경고가 사라집니다.
+- handleMessage()메소드는 Main Thread에서 생성된 Handler에 의해 호출된 것이기 때문에 `@Override` 를 선언해주면 상속메소드명을 틀리게 작성했을 때 Typo 에러를 발생시켜 메소드명 실수를 줄여줍니다.
 
 
 
@@ -250,7 +250,7 @@ Thread내에 Handler에게 메시지를 전송해서 처리해달라고 요청�
 
 
 
-# 🅿WebView를 이용한 HTML페이지 출력❔
+# 🅿WebView를 이용한 HTML페이지 출력
 
 - 🅿pycharm에서 실행
 
@@ -259,8 +259,6 @@ Thread내에 Handler에게 메시지를 전송해서 처리해달라고 요청�
 단순하게 하나의 App에 WebView를 배치한 Activity만 있으면 market에서 reject사유가 됩니다 - iOS도 마찬가지 (회사내에선 사용가능하지만 market에 못올립니다)
 
 - 이것을 reject시켰던 이유는 결제를 Web에서 수행할 가능성이 있기 때문입니다.
-
-> 어떤 어플같은 경우엔 앱과 web에서 결제가 가능한데 web결제가 더 싼 것은? Webview만 있으면 어플을 안쓰고 web으로만 결제할까봐?
 
 WebApp은 웹페이지를 만들 때 스마트 폰에서 지원하는 UI/ UX를 지원하도록 만들어주는 것이 중요합니다. - 이를 Progressive Web이라고 하며, 유튜브가 대표적입니다.
 
