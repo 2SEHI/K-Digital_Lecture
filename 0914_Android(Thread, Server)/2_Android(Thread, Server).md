@@ -159,11 +159,15 @@ MainActivity.java의 클래스 안에 내부클래스로 Thread 클래스를 생
 
 
 
-### 4) 버튼 클릭 이벤트 수정 ❔예외란❔
+### 4) 버튼 클릭 이벤트 수정
 
 onCreate()메소드를 수정하여 위에서 생성한 ValueThread클래스의 run()메소드를 실행하도록  합니다.
 
-이 경우 잘 동작할 수도 있지만 Thread에서 직접 화면 갱신을 하면 예외가 발생할 수도 있습니다.
+지금은 잘 동작할 수도 있지만 Thread가 MainThread를 거치지 않고 직접 화면 갱신을 하면 예외가 발생할 수도 있습니다.
+
+#### - 예외발생이란?
+
+여러개의 스레드에서 동시에 UI를 갱신하려고 하면 충돌이 생기기 때문에 MainThread에서만 UI를 갱신할 수 있으며, 백그라운드 스레드에서 MainThread를 거치지 않고 직접 화면 갱신을 하면 `CalledFromWrongThreadException `이 발생합니다. 그래서 백그라운드 Thread와 MainThread와의 통신을 연결하는 역할을 할 Handler가 필요합니다.
 
 ```java
 	@Override
@@ -286,11 +290,17 @@ pip install flask
 
 
 
-### 3) 요청처리 ❔map.py와 app.py차이점❔
+### 3) 요청처리 
 
  python파일 생성해서 웹서버 구동을 위한 코드를 작성합니다.
 
 파일을 생성할 거라면 app.py를 만드는 것이 좋습니다 flask는 app.py를 실행합니다. 	
+
+
+
+#### - main.py와 app.py차이점
+
+flask의 경우 main.py의 파일명을 app.py로 수정하는 것이 좋은데 flask는 터미널명령어 `flask run`으로 실행을 하게 되면, app.py 을 찾아서 실행되기 때문입니다.
 
 
 
@@ -732,21 +742,22 @@ public class SocketActivity extends AppCompatActivity {
             try{
                 // 서버의 포트번호
                 int port = 8000;
-                // Socket 생성
+                // Socket 생성하여 연결
                 // TODO Server쪽의 IP로 수정할 것
                 socket = new Socket("Server쪽의 IP", port);
+                // 입력 버퍼에 저장
                 pw = new PrintWriter(socket.getOutputStream());
-                // 입력한 내용 전송 - 버퍼에 전송
+                // 출력
                 pw.println(edit.getText().toString());
                 // flush : 버퍼의 내용을 전송하고 비우기
                 pw.flush();
                 
-                // 읽기 위한 스트림 생성
+                // Server로부터 메시지를 읽기 위한 스트림 생성
                 br = new BufferedReader(
                         new InputStreamReader(
                                 socket.getInputStream()));
                 
-                // 한 줄 읽어오기
+                // Server의 메시지를 한 줄 읽어오기
                 mes = br.readLine();
                 // mes 를 출력하기 위한 Handler 호출
                 handler.sendEmptyMessage(0);
