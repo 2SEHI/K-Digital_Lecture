@@ -298,7 +298,9 @@ pip install flask
 
 #### - main.py와 app.py차이점
 
-flask의 경우 main.py의 파일명을 app.py로 수정하는 것이 좋은데 flask는 터미널명령어 `flask run`으로 실행을 하게 되면, app.py 을 찾아서 실행되기 때문입니다.
+main.py은 Controller 역할을 수행할 python 파일로, 이 파일의 이름이나 위치는 중요하지 않으나 대부분의 경우 app.js를 선호합니다.
+
+flask를 명령어로 구동하는 경우 파일 이름을 기재하지 않고 `flask run`으로 실행을 하게 되면, app.py 을 찾아서 실행되기 때문에 app.py로 이름을 변경해서 사용하는 것이 좋습니다.
 
 
 
@@ -1147,7 +1149,7 @@ def imagedownload(pictureurl):
 
 
 
-### 1) insert
+### 1) 데이터베이스에 데이터 삽입
 
 DB에 데이터를 insert하도록 db.py를 수정합니다. 
 
@@ -1187,5 +1189,45 @@ db.py
         self.con.commit()
         self.close()
         return result
+```
+
+
+
+### 2) 데이터 삽입요청, 결과값 반환
+
+- 클라이언트로부터 입력받은 데이터를 데이터베이스에 삽입요청하고 삽입결과를 화면에 리턴하는 처리를 구현합니다.
+
+main.py
+
+```python
+@app.route('/insert', methods=['POST'])
+def insert():
+    # 전송 방식이 post일 경우
+    if request.method == 'POST':
+        # DAO 에 넘겨줄 매개변수
+        item = {}
+        # Android가 아닌 server에서 구현을 한다면
+        # 클라이언트에서 넘어온 파일 가져오기
+        f = request.file['pictureurl']
+        if f != None:
+            f.save('./static/img/' + f.filename)
+            item['pictureurl'] = f.filename
+
+        # 나머지 파라미터를 읽어서 저장
+        # 앞의 이름을 Dao에게 넘겨줄 때 이름
+        # 뒤의 이름은 클라이언트가 데이터를 보낼 때 이름과 같아야 하며,
+        #             Android에서 보낸 이름과도 같아야 합니다.
+        item['itemname'] = request.form['itemname']
+        item['price'] = request.form['price']
+        item['description'] = request.form['description']
+        
+        # 데이터베이스에 삽입
+        dao = db.Dao()
+        result = dao.insertitem(item)
+        # 응답생성 : result는 클라이언트가 읽어야할 이름 
+        # 성공하면 True, 실패하면 False
+        response = {'result' : result}
+    # json 형태의 데이터로 생성해서 결과를 리턴
+    return jsonify(response)
 ```
 
