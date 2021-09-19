@@ -58,11 +58,11 @@
 
 # Flask Web Server 와 Android통신
 
-### - [📌WebServer와 DB연결](#📌WebServer와-DB연결)
+### - [📌WebServer와 DB연결](#webserver와-db연결)
 
-### - [📌Android에 WebServer로부터 전송된 전체 데이터 출력](#📌🅰Android에-WebServer로부터-전송된-전체-데이터-출력)
+### - [📌Android에 WebServer로부터 전송된 전체 데이터 출력](#🅰android에-webserver로부터-전송된-전체-데이터-출력)
 
-### - [📌Android에서 입력한 데이터(+이미지 데이터)를 WebServer에 전송하여 DB에 저장](#📌🅰android에서-입력한-데이터이미지-데이터를-webserver에-전송하여-db에-저장)
+### - [📌Android에서 입력한 데이터(+이미지 데이터)를 WebServer에 전송하여 DB에 저장](#🅰android에서-입력한-데이터이미지-데이터를-webserver에-전송하여-db에-저장)
 
 
 
