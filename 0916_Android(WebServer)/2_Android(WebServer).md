@@ -56,12 +56,22 @@
 
 
 
-# Python Flask Web Server 와 Android통신
+# Flask Web Server 와 Android통신
 
-Python Web Server 에서 전송하는 json데이터를 받아서 parsing하여 출력
+### - [📌WebServer와 DB연결](#📌WebServer와-DB연결)
 
-- 이미지 파일의 경로를 이용해서 이미지를 다운로드
-- 이미지를 업로드(로컬 파일, 카메라로 촬영)
+### - [📌Android에 WebServer로부터 전송된 전체 데이터 출력](#📌🅰Android에-WebServer로부터-전송된-전체-데이터-출력)
+
+### - [📌Android에서 입력한 데이터(+이미지 데이터)를 WebServer에 전송하여 DB에 저장](#📌🅰android에서-입력한-데이터이미지-데이터를-webserver에-전송하여-db에-저장)
+
+
+
+# 📌WebServer와 DB연결
+
+- Python Web Server 에서 전송하는 json데이터를 받아서 parsing하여 웹 브라우저에 출력하도록 합니다.
+- 이미지 파일을 저장하기 위한 방법
+  - 이미지 파일의 경로를 이용해서 이미지를 다운로드
+  - 이미지를 업로드(로컬 파일, 카메라로 촬영)
 
 
 
@@ -440,19 +450,23 @@ itemname: "오렌지",
 pictureurl: "orange.jpg",
 price: 1500
 },
+
 .....
 ```
 
 
 
-## 7. 🅰안드로이드 애플리케이션 프로젝트 생성
+# 📌🅰Android에 WebServer로부터 전송된 전체 데이터 출력
 
 - 🅰Android Studio 에서 실행
+
+## 1. 안드로이드 애플리케이션 프로젝트 생성
+
 - pythonServerUse 라는 이름으로 프로젝트 생성합니다.
 
 
 
-## 8.인터넷 권한 설정
+## 2.인터넷 권한 설정
 
 서버에서 데이터를 받아올 것이므로 권한을 설정해주어야 합니다
 
@@ -476,7 +490,7 @@ AndroidManifest.xml
 
 
 
-## 9.MainActivity 의 디자인 수정
+## 3.MainActivity 의 디자인 수정
 
 - LinearLayout
 - `android:orientation="vertical"`
@@ -521,7 +535,7 @@ activity_main.xml
 
 
 
-## 10.DTO 클래스 : Item.java를 생성 
+## 4.DTO 클래스 : Item.java를 생성 
 
 데이터1개를 표현할 DTO클래스를 만들기 위해 Item.java를 java/com.exmaple/pythonServerUse 밑에 생성합니다
 
@@ -658,7 +672,7 @@ public Item(){
 
 
 
-## 11.MainActivity : Json파싱
+## 5.MainActivity : Json파싱
 
 MainActivity.java의 MainActivity클래스 안에 json문자열을 다운로드 받아서 파싱한 후 Item클래스의  List에 저장하는 코드를 생성합니다.
 
@@ -675,7 +689,7 @@ List<Item> itemList;
 
 
 
-## 12.다운로드 받을 Thread 클래스 구현
+## 6.다운로드 받을 Thread 클래스 구현
 
 ```java
 // 다운로드 받을 Thread 클래스
@@ -923,7 +937,7 @@ Log.e("파싱 결과", itemList.toString());
 
 
 
-## 13.실행
+## 7.json 데이터 출력
 
 실행하고 Logcat에서 Log를 확인해보고 틀린 부분은 수정하거나 `Log.e("받아온 데이터", json);`에 의해서  Server로부터 받아온 데이터를 확인해 볼 수 있습니다.
 
@@ -934,7 +948,7 @@ Log.e("파싱 결과", itemList.toString());
 
 
 
-## 14.MVC 패턴 : VIew 구현
+## 8.MVC 패턴 : VIew 구현
 
 최근의 GUI프로그래밍에서는 데이터를 출력하는 뷰의 경우 MVC Pattern 을 따르는 경우가 많은데  View는 단순하게 출력만 하고 데이터와  View를 묶어주는 별도의 클래스를 제공하는 경우가 많습니다.
 
@@ -996,7 +1010,7 @@ handler.sendEmptyMessage(0);
 
 
 
-## 15.onCreate메소드 수정 : Adapter와 ListView 연결
+## 9.onCreate메소드 수정 : Adapter와 ListView 연결
 
 onCreate메소드에 뷰들을 가져오는 코드와 데이터와 ListView를 연결하는 코드 작성합니다.
 
@@ -1142,7 +1156,7 @@ MainActivity.java의 onCreate메소드 부분
 
 
 
-### 5) 결과 확인
+## 10.WebServer로부터 가져온 데이터를 Android 화면에서 확인
 
 ![image-20210916122833823](https://user-images.githubusercontent.com/58774664/133649699-74098a3f-61bf-457e-ad07-1458f572639d.png)
 
@@ -1152,7 +1166,7 @@ MainActivity.java의 onCreate메소드 부분
 
 
 
-## 16.item cell
+## 11.item_cell.xml : 각 데이터 출력을 위한 Layout설정
 
 - res/layout 디렉토리 오른쪽 클릭 - [New]- [Layout resource File]- File name : item_cell.xml 입력하여 파일 생성
 
@@ -1222,7 +1236,7 @@ item_cell.xml
 
 
 
-## 17. ItemAdapter
+## 12. ItemAdapter
 
 이미지를 서버로부터 받아오고 출력해주는 클래스입니다.
 
@@ -1316,15 +1330,7 @@ LayoutInflater inflater;
 
 
 
-### 4) 출력 결과 넣기
-
-
-
-
-
-
-
-### 5) ItemAdapter로 연결
+### 4) ItemAdapter로 연결
 
 MainActivity의 ArrayAdapter 선언부분을 ItemAdapter를 사용하도록 변경해줍니다.
 
@@ -1351,15 +1357,25 @@ listView.setAdapter(itemAdapter);
 
 
 
-# 데이터 삽입시 파일 전송
+## 13.전체 데이터 출력 결과
+
+![image](https://user-images.githubusercontent.com/58774664/133918026-b8ac02fc-4c58-4db0-8307-c6c0e657496b.png)
+
+
+
+
+
+# 📌🅰Android에서 입력한 데이터(+이미지 데이터)를 WebServer에 전송하여 DB에 저장
+
+- 🅰Android Studio 에서 실행
 
 Android에서 데이터 삽입시 파일을 웹 서버로 전송하는 처리를 구현합니다.
 
-웹 서버 URL : http://localhost:5000/insert
+- 웹 서버 URL : http://localhost:5000/insert
 
-전송할 파라미터 : itemname, price, description, pictureurl(파일)
+- 전송할 파라미터 : itemname, price, description, pictureurl(파일)
 
-전송 방식 : POST
+- 전송 방식 : POST
 
 
 
