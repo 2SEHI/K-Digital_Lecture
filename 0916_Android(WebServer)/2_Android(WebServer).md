@@ -1,27 +1,43 @@
+# Flask Web Server 와 Android통신
+
+## 📌개념
+
+### - [Server연동방법 3가지](#server연동방법-3가지)
+
+### - [Web Service 구조](#2web-service-구조)
 
 
-# 웹 서버와 통신하는 안드로이드 애플리케이션 만들기
+
+## 📌실습
+
+### - [🅿WebServer와 DB연결](#🅿webserver와-db연결)
+
+### - [🅰Android에 WebServer로부터 전송된 전체 데이터 출력](#🅰android에-webserver로부터-전송된-전체-데이터-출력)
+
+### - [🅰Android에서 입력한 데이터(+이미지 데이터)를 WebServer에 전송하여 DB에 저장](#🅰android에서-입력한-데이터이미지-데이터를-webserver에-전송하여-db에-저장)
+
+
 
 # Server연동방법 3가지
 
 
 
-## 1.서버가 없는 애플리케이션의 경우
+## 1) Server가 없는 애플리케이션의 경우
 
 - 애플리케이션이 삭제되면 기존의 데이터는 모두 삭제됩니다
 - client에 데이터를 저장하게 되면 client가 데이터를 직접 조작하는 것이 가능한데 이 때 보안에 대해 고려해야 합니다.
-- Client만 알아야 하는 정보가 있다면 서버를 Client에 두어야 합니다. 
+- Client만 알아야 하는 정보가 있다면 Server를 Client에 두어야 합니다. 
 
 
 
-## 2.서버에서 모든 처리를 수행하고 서버에만 저장하는 애플리케이션
+## 2) Server에서 모든 처리를 수행하고 Server에만 저장하는 애플리케이션
 
 - 네트워크가 안되면 어떻게 할 것인가를 고려해야합니다
-- 모든 처리를 서버에서 한다면, 속도는 어떻게 할 것인가?
+- 모든 처리를 Server에서 한다면, 속도는 어떻게 할 것인가?
 
 
 
-## 3.서버에서 기본적인 처리를 하지만 서버에 접속이 안될 때
+## 3) Server에서 기본적인 처리를 하지만 Server에 접속이 안될 때
 
 - Client의 데이터를 가지고 처리를 해서 출력하는 애플리케이션을 만드는 것도 고민해야 합니다.
 
@@ -56,17 +72,7 @@
 
 
 
-# Flask Web Server 와 Android통신
-
-### - [📌WebServer와 DB연결](#webserver와-db연결)
-
-### - [📌Android에 WebServer로부터 전송된 전체 데이터 출력](#🅰android에-webserver로부터-전송된-전체-데이터-출력)
-
-### - [📌Android에서 입력한 데이터(+이미지 데이터)를 WebServer에 전송하여 DB에 저장](#🅰android에서-입력한-데이터이미지-데이터를-webserver에-전송하여-db에-저장)
-
-
-
-# 📌WebServer와 DB연결
+# 🅿WebServer와 DB연결
 
 - Python Web Server 에서 전송하는 json데이터를 받아서 parsing하여 웹 브라우저에 출력하도록 합니다.
 - 이미지 파일을 저장하기 위한 방법
@@ -77,8 +83,8 @@
 
 ## 1.Repository  구성
 
-- RDBMS 작업을 하기 위해서는 RDBMS 서버가 있어야 하고 접속할 수 있는 Client 프로그램이 있어야 합니다.
-  - RDBMS 서버 : MySQL 이용
+- RDBMS 작업을 하기 위해서는 RDBMS Server가 있어야 하고 접속할 수 있는 Client 프로그램이 있어야 합니다.
+  - RDBMS Server : MySQL 이용
   - Client 프로그램 : DBeaver 이용
 
 
@@ -95,7 +101,7 @@
 
 
 
-sehiDB.sql
+📑sehiDB.sql
 
 ```sql
 -- 데이터베이스 생성
@@ -177,11 +183,11 @@ pythonServer 프로젝트 바로 밑에 db.py 파일을 생성하여 mysql DB를
 
 
 
->  _host는 연습을 위해서 localhost를 설정했지만 실제로 개발서버와 db서버를 같이 쓰는 경우는 없습니다._
+>  _host는 연습을 위해서 localhost를 설정했지만 실제로 개발Server와 dbServer를 같이 쓰는 경우는 없습니다._
 
 
 
-db.py
+📃db.py
 
 ```python
 import pymysql
@@ -214,7 +220,7 @@ db.py의 Dao클래스에서  sql문 실행하여 전체 데이터를 가져오�
 
 
 
-db.py
+📃db.py
 
 ```python
     # 전체 데이터 가져오기
@@ -252,7 +258,7 @@ json으로 데이터를 넘길 때는 dict형태로 만들어서 이름을 확�
 
 
 
-main.py
+📃main.py
 
 ```python
 import db
@@ -307,7 +313,7 @@ main.py에 파일 다운로드 처리를 위한 코드를 구현합니다.
 
 
 
-main.py
+📃main.py
 
 ```python
 # 파일 다운로드
@@ -347,7 +353,7 @@ DB에 데이터를 insert하도록 db.py를 수정합니다.
 
 
 
-db.py
+📃db.py
 
 ```python
 # 데이터 삽입을 위한 메소드
@@ -389,7 +395,7 @@ db.py
 
 
 
-main.py
+📃main.py
 
 ```python
 @app.route('/insert', methods=['POST'])
@@ -436,20 +442,20 @@ def insert():
 ```json
 {
 data: [
-{
-description: "Vitamin-A",
-item: 1,
-itemname: "레몬",
-pictureurl: "lemon.jpg",
-price: 500
-},
-{
-description: "Vitamin-B",
-item: 2,
-itemname: "오렌지",
-pictureurl: "orange.jpg",
-price: 1500
-},
+    {
+        description: "Vitamin-A",
+        item: 1,
+        itemname: "레몬",
+        pictureurl: "lemon.jpg",
+        price: 500
+    },
+    {
+        description: "Vitamin-B",
+        item: 2,
+        itemname: "오렌지",
+        pictureurl: "orange.jpg",
+        price: 1500
+    },
 
 .....
 ```
@@ -468,15 +474,15 @@ price: 1500
 
 ## 2.인터넷 권한 설정
 
-서버에서 데이터를 받아올 것이므로 권한을 설정해주어야 합니다
+Server에서 데이터를 받아올 것이므로 권한을 설정해주어야 합니다
 
 AndroidManifest.xml 파일에 인터넷 권한을 부여
 
-접속할 서버가 보안 인증이 안되어 있으면 application 태그에 설정을 추가
+접속할 Server가 보안 인증이 안되어 있으면 application 태그에 설정을 추가
 
 
 
-AndroidManifest.xml
+📑AndroidManifest.xml
 
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
@@ -499,7 +505,7 @@ AndroidManifest.xml
 
 
 
-activity_main.xml
+📑activity_main.xml
 
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
@@ -535,9 +541,9 @@ activity_main.xml
 
 
 
-## 4.DTO 클래스 : Item.java를 생성 
+## 4.DTO 클래스 : 📃Item.java를 생성 
 
-데이터1개를 표현할 DTO클래스를 만들기 위해 Item.java를 java/com.exmaple/pythonServerUse 밑에 생성합니다
+데이터1개를 표현할 DTO클래스를 만들기 위해 📃Item.java를 java/com.exmaple/pythonServerUse 밑에 생성합니다
 
 ### 1) DTO
 
@@ -569,11 +575,11 @@ public class Item implements Serializable {
 ### 3) 변수 선언
 
 ```java
-    private int itemid;
-    private String itemname;
-    private int price;
-    private String description;
-    private String pictureurl;
+private int itemid;
+private String itemname;
+private int price;
+private String description;
+private String pictureurl;
 ```
 
 
@@ -672,7 +678,7 @@ public Item(){
 
 
 
-## 5.MainActivity : Json파싱
+## 5.📃MainActivity.java : Json파싱
 
 MainActivity.java의 MainActivity클래스 안에 json문자열을 다운로드 받아서 파싱한 후 Item클래스의  List에 저장하는 코드를 생성합니다.
 
@@ -696,7 +702,7 @@ List<Item> itemList;
 class ItemThread extends Thread {
     public void run(){
         try {
-            // 웹 서버 url설정
+            // 웹 Server url설정
             URL url = new URL("http://Server쪽의 IP:5000/item");
             // URL객체를 HttpURLConnection 으로 형 변환
             HttpURLConnection con = (HttpURLConnection)url.openConnection();
@@ -763,7 +769,7 @@ class ItemThread extends Thread {
             }
             Log.e("파싱 결과", itemList.toString());
 
-            // 핸들러에게 메시지 전송
+            // Handler에게 메시지 전송
             handler.sendEmptyMessage(0);
 
         }catch (Exception e){
@@ -806,8 +812,8 @@ try catch문을 사용하여 에러 발생시 로그로 확인할 수 있도록 
 ### 3) Server 연결
 
 ```java
-// 웹 서버 url설정
-URL url = new URL("http://웹서버IP:5000/item");
+// 웹 Server url설정
+URL url = new URL("http://웹ServerIP:5000/item");
 // URL객체를 HttpURLConnection 으로 형 변환
 HttpURLConnection con = (HttpURLConnection)url.openConnection();
 
@@ -948,7 +954,7 @@ Log.e("파싱 결과", itemList.toString());
 
 
 
-## 8.MVC 패턴 : VIew 구현
+## 8.MVC 패턴 : View 구현
 
 최근의 GUI프로그래밍에서는 데이터를 출력하는 뷰의 경우 MVC Pattern 을 따르는 경우가 많은데  View는 단순하게 출력만 하고 데이터와  View를 묶어주는 별도의 클래스를 제공하는 경우가 많습니다.
 
@@ -960,7 +966,7 @@ ListView에 데이터를 출력하기 위한 변수를 선언해줍니다.
 
 
 
-MainActivity.java
+📃MainActivity.java
 
 ```java
 // 목록을 출력할 ListView
@@ -978,6 +984,10 @@ ProgressBar downloadView;
 ### 2) Handler 생성
 
 Thread에게 메시지를 받아 화면에 출력해주는 Handler를 생성합니다.
+
+
+
+📃MainActivity.java
 
 ```java
 // 화면 갱신을 위한 Handler 객체생성
@@ -1001,7 +1011,7 @@ Handler handler = new Handler(Looper.getMainLooper()){
 
 
 
-MainActivity.java 의 Thread클래스에서 파싱하고 난 다음 부분에 아래 코드를 추가
+📃MainActivity.java 의 Thread클래스에서 파싱하고 난 다음 부분에 아래 코드를 추가
 
 ```java
 // Handler에게 메시지 전송
@@ -1016,7 +1026,7 @@ onCreate메소드에 뷰들을 가져오는 코드와 데이터와 ListView를 �
 
 
 
-MainActivity.java
+📃MainActivity.java
 
 ```java
 @Override
@@ -1044,6 +1054,8 @@ protected void onCreate(Bundle savedInstanceState) {
 
 ### 1) View 가져오기
 
+📃MainActivity.java
+
 ```java
 super.onCreate(savedInstanceState);
 // res/layout/activity_main.xml내용을 가져옴
@@ -1066,6 +1078,8 @@ downloadView = (ProgressBar)findViewById(R.id.downloadView); // 진행상황
 
 
 ### 2) Adapter 설정
+
+📃MainActivity.java
 
 ```java
 // this, 행의 모양, 데이터
@@ -1102,6 +1116,8 @@ itemAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, item
 
 ### 3) ListView 가로줄 색과 높이 설정
 
+📃MainActivity.java
+
 ```java
 listView.setDivider(new ColorDrawable(Color.RED)); //가로줄 색을 빨간색으로 변경
 listView.setDividerHeight(3); // 가로줄 Height 크기를 3으로 지정
@@ -1120,7 +1136,7 @@ ListView 에 대한 색과 높이 지정을 해주는데 이때  주의할 점�
 
 
 
-MainActivity.java의 ItemThread 클래스
+📃MainActivity.java의 ItemThread 클래스
 
 ```java
 ..중략..
@@ -1141,22 +1157,24 @@ while(i < ar.length()){
 
 
 
-MainActivity.java의 onCreate메소드 부분
+📃MainActivity.java의 onCreate메소드 부분
 
 ```java
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-    	..중략..
-		// 초기화 작업
+@Override
+protected void onCreate(Bundle savedInstanceState) {
+    ..중략..
+        // 초기화 작업
         itemList = new ArrayList<>();
-    	..중략..
+    ..중략..
 ```
 
 
 
 
 
-## 10.WebServer로부터 가져온 데이터를 Android 화면에서 확인
+## 10.결과 확인
+
+WebServer로부터 가져온 데이터를 Android 화면에서 확인합니다. 아직은 json형식의 결과를 문자열그대로 보여줍니다.
 
 ![image-20210916122833823](https://user-images.githubusercontent.com/58774664/133649699-74098a3f-61bf-457e-ad07-1458f572639d.png)
 
@@ -1172,7 +1190,7 @@ MainActivity.java의 onCreate메소드 부분
 
 
 
-item_cell.xml
+📑item_cell.xml
 
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
@@ -1225,7 +1243,9 @@ item_cell.xml
   - `android:layout_width="0dp"` 는 길이를 지정하지 않는 것으로 weight 지정과 같이 사용됩니다.
   - `android:layout_weight="8" ` : 전체 합에서 80%비율을 차지하겠다는 의미입니다.
 
-### 2) 크기단위 dp & sp
+
+
+### 2) dp & sp 단위 
 
 - dp 
   - TextView를 일관된 사이즈로 유지해야하는 경우 사용합니다.
@@ -1236,13 +1256,17 @@ item_cell.xml
 
 
 
-## 12. ItemAdapter
+## 12. 📃ItemAdapter.java 생성
 
-이미지를 서버로부터 받아오고 출력해주는 클래스입니다.
+이미지를 Server로부터 받아오고 출력해주는 클래스입니다.
 
 
 
 ### 1) 변수 선언
+
+ListView출력에 필요한 변수들을 선언해줍니다.
+
+📃ItemAdapter.java
 
 ```java
 // View 출력할 때 필요한 Context 변수 - Activity 를 대입
@@ -1261,6 +1285,8 @@ LayoutInflater inflater;
 
 ### 2) 생성자 만들기
 
+📃ItemAdapter.java
+
 ```java
     // 생성자 만들기
     public ItemAdapter(Context context, List<Item> data, int layout){
@@ -1277,64 +1303,37 @@ LayoutInflater inflater;
 
 부모 클래스 BaseAdapter의 메소드를 재정의합니다.
 
+
+
+📃ItemAdapter.java
+
 ```java
+// 행의 개수를 설정하는 메소드 - 반복문을 수행할 횟수
+@Override
+public int getCount() {
+    return data.size();
+}
 
-    // 행의 개수를 설정하는 메소드 - 반복문을 수행할 횟수
-    @Override
-    public int getCount() {
-        return data.size();
-    }
+// 기본 모양을 사용할 때 보여질 문자열을 설정하는 메소드
+@Override
+public Object getItem(int i) {
+    return data.get(i).getItemid();
+}
 
-    // 기본 모양을 사용할 때 보여질 문자열을 설정하는 메소드
-    @Override
-    public Object getItem(int i) {
-        return data.get(i).getItemid();
-    }
-
-    // 셀을 구별하기 위한 아이디를 설정하는 메소드
-    @Override
-    public long getItemId(int i) {
-        return (long)i;
-    }
+// 셀을 구별하기 위한 아이디를 설정하는 메소드
+@Override
+public long getItemId(int i) {
+    return (long)i;
+}
 ```
 
 
 
-```java
+## 13. MainActivity.java의 onCreate 수정
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        // 초기화 작업
-        itemList = new ArrayList<>();
-        
-        // xml파일에 디자인한 뷰 가져오기
-        listView = (ListView)findViewById(R.id.listView); // 목록
-        downloadView = (ProgressBar)findViewById(R.id.downloadView); // 진행상황
+[📃MainActivity.java에 작성했던 onCreate](#9oncreate메소드-수정--adapter와-listview-연결)에서 ArrayAdapter 선언부분을 위에서 생성한 📃ItemAdapter를 사용하도록 변경해줍니다.
 
-        // this, 행의 모양, 데이터
-         itemAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, itemList);
-        // listView와 itemList를 연결
-//        itemAdapter = new ItemAdapter(this, itemList, R.layout.item_cell);
-//        listView.setAdapter(itemAdapter);
-
-        // 색을 만들고 높이를 지정해야 합니다. 이 순서는 바뀌면 안됩니다.
-        listView.setDivider(new ColorDrawable(Color.RED)); //가로줄 색 변경
-        listView.setDividerHeight(3); // 가로줄 Height 크기 지정
-
-        // Thread를 만들어서 실행
-        new ItemThread().start();
-    }
-```
-
-
-
-### 4) ItemAdapter로 연결
-
-MainActivity의 ArrayAdapter 선언부분을 ItemAdapter를 사용하도록 변경해줍니다.
-
-기존에는 Item 클래스 타입의 ArrayAdapter를 view를 연결했었는데, 직접 만든 ItemAdapter로 View를 연결하도록 변경해줍니다.
+📃MainActivity.java
 
 ```java
 // 데이터와 뷰를 이어줄 Adapter 변수
@@ -1344,20 +1343,41 @@ ItemAdapter itemAdapter;
 
 
 
-oncreate 메소드 수정
+기존에는 Item 클래스 타입의 ArrayAdapter를 view를 연결했었는데, 직접 만든 ItemAdapter로 View를 연결하도록 변경해줍니다.
 
-- MainActivity 클래스의 oncreate 메소드에서 itemAdapter객체 생성 코드를 수정합니다.
+📃MainActivity.java
 
 ```java
-// this, 행의 모양, 데이터
-// itemAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, itemList);
-itemAdapter = new ItemAdapter(this, itemList, android.R.layout.simple_list_item_1);
-listView.setAdapter(itemAdapter);
+
+@Override
+protected void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    setContentView(R.layout.activity_main);
+    // 초기화 작업
+    itemList = new ArrayList<>();
+
+    // xml파일에 디자인한 뷰 가져오기
+    listView = (ListView)findViewById(R.id.listView); // 목록
+    downloadView = (ProgressBar)findViewById(R.id.downloadView); // 진행상황
+
+    // this, 행의 모양, 데이터
+    // itemAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, itemList);
+    // listView와 itemList를 연결
+    itemAdapter = new ItemAdapter(this, itemList, R.layout.item_cell);
+    listView.setAdapter(itemAdapter);
+
+    // 색을 만들고 높이를 지정해야 합니다. 이 순서는 바뀌면 안됩니다.
+    listView.setDivider(new ColorDrawable(Color.RED)); //가로줄 색 변경
+    listView.setDividerHeight(3); // 가로줄 Height 크기 지정
+
+    // Thread를 만들어서 실행
+    new ItemThread().start();
+}
 ```
 
 
 
-## 13.전체 데이터 출력 결과
+## 14.전체 데이터 출력 결과
 
 ![image](https://user-images.githubusercontent.com/58774664/133918026-b8ac02fc-4c58-4db0-8307-c6c0e657496b.png)
 
@@ -1369,9 +1389,9 @@ listView.setAdapter(itemAdapter);
 
 - 🅰Android Studio 에서 실행
 
-Android에서 데이터 삽입시 파일을 웹 서버로 전송하는 처리를 구현합니다.
+Android에서 데이터 삽입시 파일을 웹 Server로 전송하는 처리를 구현합니다.
 
-- 웹 서버 URL : http://localhost:5000/insert
+- 웹 Server URL : http://localhost:5000/insert
 
 - 전송할 파라미터 : itemname, price, description, pictureurl(파일)
 
@@ -1381,7 +1401,7 @@ Android에서 데이터 삽입시 파일을 웹 서버로 전송하는 처리를
 
 ## 1. 삽입이미지 생성
 
-서버에 전송할 이미지를 res디렉토리 밑에 raw디렉토리를 생성하고 이미지 넣습니다.
+Server에 전송할 이미지를 res디렉토리 밑에 raw디렉토리를 생성하고 이미지 넣습니다.
 
 
 
@@ -1401,13 +1421,13 @@ Android에서 데이터 삽입시 파일을 웹 서버로 전송하는 처리를
 
 
 
-## 3. activity_item_insert.xml 에 디자인 수정
+## 3.activity_item_insert.xml 에 디자인 수정
 
 - 문자열을 입력받을 EditText 3개와 버튼 3개 그리고 이미지를 출력할 ImageView 를 배치합니다
 
 
 
-activity_item_insert.xml
+📑activity_item_insert.xml
 
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
@@ -1460,13 +1480,13 @@ activity_item_insert.xml
 
 
 
-## 4. ItemInsertActivity.java 수정
+## 4.📃ItemInsertActivity.java 수정
 
 ### 1) 변수 선언
 
 
 
-ItemInsertActivity.java
+📃ItemInsertActivity.java
 
 ```java
 Button btninsert, btngallery, btncamera;
@@ -1478,50 +1498,64 @@ ImageView imageView;
 
 ### 2) onCreate 메소드작성
 
-onCreate 메소드에서 변수를 찾아서 대입하는 코드 작성
+onCreate 메소드에 데이터 삽입에 필요한 View 변수를 찾아서 대입하는 코드를 작성해줍니다.
 
 
 
-ItemInsertActivity.java
+📃ItemInsertActivity.java
 
 ```java
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_item_insert);
+@Override
+protected void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    setContentView(R.layout.activity_item_insert);
 
-        btninsert = (Button)findViewById(R.id.btninsert);
-        btngallery = (Button)findViewById(R.id.btngallery);
-        btncamera = (Button)findViewById(R.id.btncamera);
+    btninsert = (Button)findViewById(R.id.btninsert);
+    btngallery = (Button)findViewById(R.id.btngallery);
+    btncamera = (Button)findViewById(R.id.btncamera);
 
-        edititemname = (EditText)findViewById(R.id.edititemname);
-        editprice = (EditText)findViewById(R.id.editprice);
-        editdescription = (EditText)findViewById(R.id.editdescription);
+    edititemname = (EditText)findViewById(R.id.edititemname);
+    editprice = (EditText)findViewById(R.id.editprice);
+    editdescription = (EditText)findViewById(R.id.editdescription);
 
-        imageView = (ImageView)findViewById(R.id.imageview);
-    }
+    imageView = (ImageView)findViewById(R.id.imageview);
+}
 ```
 
 
 
-### 4) 삽입결과를 출력할 Handler 객체 생성
+### 3) 삽입결과를 출력할 Handler 객체 생성
+
+삽입성공 여부에 따른 메시지를 표시하는 화면출력부분을 구현합니다.
+
+Snackbar 는 화면에 메시지를 표시해주는 수단입니다.
+
+- `make(imageView, "표시할 메시지", Snackbar.LENGTH_LONG).show()`  
+  - 첫번째 인자 : snackbar 를 붙일 parent View
+  - 두번째 인자 : 화면에 표시할 메시지 내용
+  - 세번째 인자 : 메시지를 얼마동안 표시해줄지에 대한 설정. 
+    - LENGTH_SHORT : 약 2초간 메시지 표시
+    - LENGTH_LONG : 약 4초간 메시지 표시
+    - LENGTH_INDEFINITE 는 다른 Snackbar 가 나오거나 유저가 dismiss 하기 전까지 계속 노출
+
+📃itemInsertActivity.java
 
 ```java
-    // 삽입 결과를 저장할 변수
-    Boolean result = false;
-    // 삽입 결과를 출력할 Handler
-    Handler handler = new Handler(Looper.getMainLooper()){
-        @Override
-        public void handleMessage(Message msg) {
-            if(result == true){
-                // 삽입 결과를 출력합니다.
-                Snackbar.make(imageView, "삽입 성공", Snackbar.LENGTH_LONG).show();
-            }else{
-                Snackbar.make(imageView, "삽입 실패", Snackbar.LENGTH_LONG).show();
-            }
-            super.handleMessage(msg);
+// 삽입 결과를 저장할 변수
+Boolean result = false;
+// 삽입 결과를 출력할 Handler
+Handler handler = new Handler(Looper.getMainLooper()){
+    @Override
+    public void handleMessage(Message msg) {
+        if(result == true){
+            // 삽입 결과를 출력합니다.
+            Snackbar.make(imageView, "삽입 성공", Snackbar.LENGTH_LONG).show();
+        }else{
+            Snackbar.make(imageView, "삽입 실패", Snackbar.LENGTH_LONG).show();
         }
-    };
+        super.handleMessage(msg);
+    }
+};
 ```
 
 
@@ -1534,20 +1568,20 @@ ItemInsertActivity.java
 
 
 
-itemInsertActivity.java
+📃itemInsertActivity.java
 
-```javascript
+```java
+// 요청을 수행할 Thread
 class ThreadEx extends Thread{
     public void run(){
         try{
             // 요청 URL생성
-            URL url = new URL("http://Server쪽의 IP:5000/insert");
+            URL url = new URL("http://172.30.1.54:5000/insert");
             // 연결 객체 생성
             HttpURLConnection con = (HttpURLConnection)url.openConnection();
             con.setUseCaches(false);
             con.setConnectTimeout(30000);
 
-            // 파일을 제외한 파라미터 생성
             // 파일을 제외한 파라미터 생성
             String [] dataName = {
                 "itemname",
@@ -1558,100 +1592,106 @@ class ThreadEx extends Thread{
                 edititemname.getText().toString(),
                     editprice.getText().toString(),
                     editdescription.getText().toString()
-        	};
+        };
 
-            // 파일이 있으면 구분자생성
-            String lineEnd = "\r\n";
-            // 중복되지 않는 문자열 생성
-            String boundary = UUID.randomUUID().toString();
-            // 전송 방식 설정 : POST
-            con.setRequestMethod("POST");
-            con.setDoOutput(true);
-            con.setDoInput(true);
+        // 파일이 있으면 구분자생성
+        String lineEnd = "\r\n";
+        // 중복되지 않는 문자열 생성
+        String boundary = UUID.randomUUID().toString();
+        // 전송 방식 설정 : POST
+        con.setRequestMethod("POST");
+        // OutputStream으로 POST 데이터를 넘겨주겠다는 옵션
+        con.setDoOutput(true);
+        // InputStream으로 Server로 부터 응답을 받겠다는 옵션
+        con.setDoInput(true);
 
-            /**파일을 전송할 때만 설정*/
-            // setRequestProperty : Request Header 값 세팅
-            con.setRequestProperty("ENCTYPE", "multipart/form-data");
-            con.setRequestProperty("Content-Type", "multipart/form-data;boundary=" + boundary);
-            // 파라미터 구분을 위한 구분자 생성
-            // Server가 이 것으로 파라미터를 구분합니다.
-            String delimiter = "--" + boundary + lineEnd;
-            // 파일을 제외한 파라미터를 하나의 문자열로 생성
-            StringBuffer postDataBuilder= new StringBuffer();
-            for(int i=0; i<data.length; i++){
-                postDataBuilder.append(delimiter);
-                postDataBuilder.append("Content-Disposition:form-data;name=\"" + dataName[i] + "\""
-                        + lineEnd + lineEnd + data[i] + lineEnd);
-            }
+        /**파일을 전송할 때만 설정*/
+        // setRequestProperty : Request Header 값 세팅
+        con.setRequestProperty("ENCTYPE", "multipart/form-data");
+        con.setRequestProperty("Content-Type", "multipart/form-data;boundary=" + boundary);
+        // 파라미터 구분을 위한 구분자 생성
+        // Server가 이 것으로 파라미터를 구분합니다.
+        String delimiter = "--" + boundary + lineEnd;
+        // 파일을 제외한 파라미터를 하나의 문자열로 생성
+        StringBuffer postDataBuilder= new StringBuffer();
 
-            // TODO
-            // 파일명 생성
-            String fileName = "penguins.jpg";
-            // 파일이름을 파라미터로 추가
-            if(fileName != null){
-                postDataBuilder.append(delimiter);
-                postDataBuilder.append(
-                        "Content-Disposition:form-data;name=\"" +
-                                "pictureurl" + "\";filename=\"" +
-                                fileName + "\"" + lineEnd);
-            }
-            // 파라미터를 서버에 전송 : 텍스트들만
-            DataOutputStream ds = new DataOutputStream(con.getOutputStream());
-            ds.write(postDataBuilder.toString().getBytes());
-            // 파일을 전송하고 파라미터 전송을 종료
-            if(fileName != null){
-                ds.writeBytes(lineEnd);
-
-                // 카메라를 쓰면 이부분이 변경됨
-                // 파일 읽기
-                InputStream fres = getResources().openRawResource(R.raw.penguins);
-                byte [] buffer = new byte[fres.available()];
-
-                int length = -1;
-                // 파일 전송
-                while((length = fres.read(buffer)) != -1){
-                    ds.write(buffer, 0, length);
-                }
-
-                ds.writeBytes(lineEnd);
-                ds.writeBytes(lineEnd);
-                ds.writeBytes("--" + boundary + "--" + lineEnd);
-                fres.close();
-            }else {
-                // 파일이 없는 경우
-                ds.writeBytes(lineEnd);
-                ds.writeBytes("--" + boundary + "--" + lineEnd);
-            }
-
-            ds.flush();
-            ds.close();
-
-            // 웹서버의 응답 읽기
-            BufferedReader br = new BufferedReader(
-                    new InputStreamReader(con.getInputStream()));
-            StringBuilder sb = new StringBuilder();
-            while(true){
-                String line = br.readLine();
-                if(line == null){
-                    break;
-                }
-                sb.append(line + "\n");
-            }
-            String json = sb.toString();
-            Log.e("응답", json);
-
-            // JSON 파싱
-            JSONObject object = new JSONObject(json);
-            // result 키의 결과를 저장
-            result = object.getBoolean("result");
-            
-            // 핸들러에게 메시지 전송
-            handler.sendEmptyMessage(0);
-
-        }catch(Exception e){
-            Log.e("요청 및 파싱 실패", e.getLocalizedMessage());
+        // 파일정보를 제외한 itemname, price, description에 대한 값 설정
+        for(int i=0; i<data.length; i++){
+            postDataBuilder.append(delimiter);
+            postDataBuilder.append("Content-Disposition:form-data;name=\"" + dataName[i] + "\""
+                                   + lineEnd + lineEnd + data[i] + lineEnd);
         }
+
+        // TODO
+        // 파일명 생성
+        String fileName = "penguins.jpg";
+        // 파일이름을 파라미터로 추가
+        if(fileName != null){
+            postDataBuilder.append(delimiter);
+            postDataBuilder.append(
+                "Content-Disposition:form-data;name=\"" +
+                "pictureurl" + "\";filename=\"" +
+                fileName + "\"" + lineEnd);
+        }
+        // 파라미터를 Server에 전송 : 텍스트들만
+        DataOutputStream ds = new DataOutputStream(con.getOutputStream());
+        ds.write(postDataBuilder.toString().getBytes());
+        // 파일을 전송하고 파라미터 전송을 종료
+        if(fileName != null){
+            ds.writeBytes(lineEnd);
+
+            // 카메라를 쓰면 이부분이 변경됨
+            // /res/raw 폴더의 파일 읽어들인다는 의미
+            InputStream fres = getResources().openRawResource(R.raw.penguins);
+            // penguins파일에 대해 현재 읽을수 있는 바이트수만큼 byte 배열을 생성
+            byte [] buffer = new byte[fres.available()];
+
+            int length = -1;
+            // 파일 전송
+            // 파일을 나누어서 DataOutputStream에 쓰기
+            while((length = fres.read(buffer)) != -1){
+                ds.write(buffer, 0, length);
+            }
+
+            ds.writeBytes(lineEnd);
+            ds.writeBytes(lineEnd);
+            ds.writeBytes("--" + boundary + "--" + lineEnd);
+            fres.close();
+        }else {
+            // 파일이 없는 경우
+            ds.writeBytes(lineEnd);
+            ds.writeBytes("--" + boundary + "--" + lineEnd);
+        }
+
+        ds.flush();
+        ds.close();
+
+        // 웹Server의 응답 읽기
+        BufferedReader br = new BufferedReader(
+            new InputStreamReader(con.getInputStream()));
+        StringBuilder sb = new StringBuilder();
+        while(true){
+            String line = br.readLine();
+            if(line == null){
+                break;
+            }
+            sb.append(line + "\n");
+        }
+        String json = sb.toString();
+        Log.e("응답", json);
+
+        // JSON 파싱
+        JSONObject object = new JSONObject(json);
+        // result 키의 결과를 저장
+        result = object.getBoolean("result");
+
+        // Handler에게 메시지 전송
+        handler.sendEmptyMessage(0);
+
+    }catch(Exception e){
+        Log.e("요청 및 파싱 실패", e.getLocalizedMessage());
     }
+}
 }
 ```
 
@@ -1690,66 +1730,221 @@ String [] data = {
 
 
 
-### 3) 
+### 3) Client요청식별을 위한 변수 선언💦
 
 ```java
 // 파일이 있으면 구분자생성
 String lineEnd = "\r\n";
 // 중복되지 않는 문자열 생성
 String boundary = UUID.randomUUID().toString();
-// 전송 방식 설정 : POST
-con.setRequestMethod("POST");
-con.setDoOutput(true);
-con.setDoInput(true);
 ```
 
-- `String boundary = UUID.randomUUID().toString()` :  Server에서 고객에 대한 Server 요청을 식별하기 위해 UUID 클래스의 *randomUUID*() 메소드를 사용해서 유일한 식별자를 생성합니다.
+- `String boundary = UUID.randomUUID().toString()` :  Server에서 Client요청을💦 식별하기 위해 UUID 클래스의 *randomUUID*() 메소드를 사용해서 유일한 식별자를 생성합니다.
 
-- `con.setRequestMethod("POST")` : 전송 방식을 POST로 설정합니다.
-
-- `setDoOutput` : erver 통신에서 출력 가능한 상태로 만듬
 
 ###  
 
-[https://lena-chamna.netlify.app/post/http_multipart_form-data/](https://lena-chamna.netlify.app/post/http_multipart_form-data/)
+### 4) 전송방식 설정
+
+```java
+// 전송 방식 설정 : POST
+con.setRequestMethod("POST");
+// OutputStream으로 POST 데이터를 넘겨주겠다는 옵션
+con.setDoOutput(true);
+// InputStream으로 Server로 부터 응답을 받겠다는 옵션
+con.setDoInput(true);
+```
+
+- `con.setRequestMethod("POST")` : 전송 방식을 POST로 설정합니다.
+- `setDoOutput` : erver 통신에서 출력 가능한 상태로 만듭니다.
 
 
 
-### onCreate 수정
+### 5) 파일 이외의 정보를 문자열에 저장
+
+```java
+/**파일을 전송할 때만 설정*/
+// setRequestProperty : Request Header 값 세팅
+con.setRequestProperty("ENCTYPE", "multipart/form-data");
+con.setRequestProperty("Content-Type", "multipart/form-data;boundary=" + boundary);
+// 파라미터 구분을 위한 구분자 생성
+// Server가 이 것으로 파라미터를 구분합니다.
+String delimiter = "--" + boundary + lineEnd;
+// 파일을 제외한 파라미터를 하나의 문자열로 생성
+StringBuffer postDataBuilder= new StringBuffer();
+
+// 파일정보를 제외한 itemname, price, description에 대한 값 설정
+for(int i=0; i<data.length; i++){
+    postDataBuilder.append(delimiter);
+    postDataBuilder.append("Content-Disposition:form-data;name=\"" + dataName[i] + "\""
+            + lineEnd + lineEnd + data[i] + lineEnd);
+}
+```
+
+- `setRequestProperty` : Request Header 값 세팅
+- multipart : 웹 클라이언트가 Server에 파일을 보낼때,  http 프로토콜의 바디 부분에 파일정보를 여러개로 나누어서 보낸다는 의미입니다.
+
+- 파일정보를 제외한 itemname, price, description에 대한 정보를 문자열로 생성합니다.
 
 
 
-### 성공시 입력란 초기화 + 키보드 제거
+### 6) 파일 정보를 문자열에 저장
+
+```java
+// TODO
+// 파일명 생성
+String fileName = "penguins.jpg";
+// 파일이름을 파라미터로 추가
+if(fileName != null){
+    // 식별자
+    postDataBuilder.append(delimiter);
+    // 파일 정보
+    postDataBuilder.append(
+    			"Content-Disposition:form-data;name=\"" +
+				"pictureurl" + "\";filename=\"" +
+				fileName + "\"" + lineEnd);
+}
+```
+
+ 
+
+### 7) Server에 전송
+
+```java
+// 파라미터를 Server에 전송 : 텍스트들만
+DataOutputStream ds = new DataOutputStream(con.getOutputStream());
+// 문자열로 저장된 삽입데이터 정보를 DataOutputStream에 쓰기
+ds.write(postDataBuilder.toString().getBytes());
+// 파일을 전송하고 파라미터 전송을 종료
+if(fileName != null){
+    ds.writeBytes(lineEnd);
+
+    // 카메라를 쓰면 이부분이 변경됨
+    // /res/raw 폴더밑에 penguins라는 파일을 읽어들임
+    InputStream fres = getResources().openRawResource(R.raw.penguins);
+    // penguins파일에 대해 현재 읽을수 있는 바이트수만큼 byte 배열을 생성
+    byte [] buffer = new byte[fres.available()];
+
+    int length = -1;
+    // 파일 전송
+    // 파일을 나누어서 DataOutputStream에 쓰기
+    while((length = fres.read(buffer)) != -1){
+   		ds.write(buffer, 0, length);
+    }
+
+    ds.writeBytes(lineEnd);
+    ds.writeBytes(lineEnd);
+    ds.writeBytes("--" + boundary + "--" + lineEnd);
+    fres.close();
+}else {
+    // 파일이 없는 경우
+    ds.writeBytes(lineEnd);
+    ds.writeBytes("--" + boundary + "--" + lineEnd);
+}
+
+ds.flush();
+ds.close();
+```
+
+- `DataOutputStream ` : 자바의 기본 자료형 데이터를 바이트 스트림으로 출력하기 위한 클래스
+- `DataOutputStream ds = new DataOutputStream(con.getOutputStream())` : HttpURLConnection에 저장된 연결 객체 정보를 보낼 스트림으로 출력하기 위해 저장
+- `InputStream fres = getResources().openRawResource(R.raw.penguins)` :  `/res/raw` 폴더밑에 penguins라는 파일을 읽어들인다는 의미입니다.
+- `ds.write(postDataBuilder.toString().getBytes())` : postDataBuilder에 문자열로 저장된 삽입데이터 정보를 DataOutputStream에 쓰기
+- `ds.flush()` : 현재 버퍼에 저장되어 있는 내용을 클라이언트로 전송하고 버퍼를 비운다
 
 
 
+### 8) webServer의 응답읽기
+
+```java
+// 웹Server의 응답 읽기
+BufferedReader br = new BufferedReader(
+	new InputStreamReader(con.getInputStream()));
+	StringBuilder sb = new StringBuilder();
+	while(true){
+		String line = br.readLine();
+		if(line == null){
+			break;
+		}
+		sb.append(line + "\n");
+	}
+String json = sb.toString();
+Log.e("응답", json);
+```
+
+- StringBuilder에 webServer로부터의 처리응답을 읽어서 문자열로 저장합니다.
 
 
 
+### 9) 처리응답을 json형태로 파싱하여 결과 저장
+
+```java
+// JSON 파싱
+JSONObject object = new JSONObject(json);
+// result 키의 결과를 저장
+result = object.getBoolean("result");
+```
 
 
 
+### 10) Handler 호출
 
-
-### 소프트웨어 공학, 디자인패턴은 무조건 학습할 것
-
-
-
-
-
-
+```java
+// Handler에게 메시지 전송
+handler.sendEmptyMessage(0);
+```
 
 
 
+## 6.결과 확인
+
+![1](https://user-images.githubusercontent.com/58774664/133938582-0075eb7b-262c-4c59-9c79-8ff950283425.png)
+![2](https://user-images.githubusercontent.com/58774664/133938584-46a0e0f9-5190-4af2-853e-dd8b6a4b6e56.png)
+![3](https://user-images.githubusercontent.com/58774664/133938583-b6b4db81-c4ee-4e5b-ab2c-6e84711d0340.png)
 
 
 
+## 7.Handler수정 : 삽입결과를 화면에 출력
+
+삽입 성공시 입력란 초기화 + 키보드 제거하도록 Handler를 수정해줍니다.
 
 
 
+Handler
+
+```java
+// 삽입 결과를 출력할 Handler
+Handler handler = new Handler(Looper.getMainLooper()){
+    @Override
+    public void handleMessage(Message msg) {
+		if(result == true){
+            // 삽입 결과를 화면에 출력합니다.
+            Snackbar.make(imageView, "삽입 성공", Snackbar.LENGTH_LONG).show();
+
+            // 삽입 성공후 입력 란을 초기화
+            edititemname.setText("");
+            editprice.setText("");
+            editdescription.setText("");
+
+            // 키보드 제거 - 입력란의 포커스를 해제
+            InputMethodManager imm = (InputMethodManager)getSystemService(
+            INPUT_METHOD_SERVICE);
+            // edititemname 의 포커스를 해제
+            imm.hideSoftInputFromWindow(edititemname.getWindowToken(), 0);
+            // edititemname 의 포커스를 해제
+            imm.hideSoftInputFromWindow(editprice.getWindowToken(), 0);
+            // edititemname 의 포커스를 해제
+            imm.hideSoftInputFromWindow(editdescription.getWindowToken(), 0);
+        }else{
+    	    Snackbar.make(imageView, "삽입 실패", Snackbar.LENGTH_LONG).show();
+		}
+    	super.handleMessage(msg);
+    }
+};
+```
 
 
 
+## 8.삽입결과 화면확인
 
-
-
+![ezgif com-gif-maker](https://user-images.githubusercontent.com/58774664/133938925-bc2666b3-4c27-4b9a-9f31-96bcece22a5f.gif)
