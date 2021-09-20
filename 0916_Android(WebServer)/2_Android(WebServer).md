@@ -4,7 +4,7 @@
 
 ### - [Server연동방법 3가지](#server연동방법-3가지)
 
-### - [Web Service 구조](#2web-service-구조)
+### - [Web Service 구조](#web-service-구조)
 
 
 
@@ -1898,13 +1898,13 @@ handler.sendEmptyMessage(0);
 
 ## 6.결과 확인
 
-![1](https://user-images.githubusercontent.com/58774664/133938582-0075eb7b-262c-4c59-9c79-8ff950283425.png)
-![2](https://user-images.githubusercontent.com/58774664/133938584-46a0e0f9-5190-4af2-853e-dd8b6a4b6e56.png)
-![3](https://user-images.githubusercontent.com/58774664/133938583-b6b4db81-c4ee-4e5b-ab2c-6e84711d0340.png)
+![1](https://user-images.githubusercontent.com/58774664/133956106-20c5c83a-f49d-482c-b95d-4af12dfbfaa1.png)
+![2](https://user-images.githubusercontent.com/58774664/133956104-3e95e5b4-752d-49f7-95de-53167e084075.png)
+![3](https://user-images.githubusercontent.com/58774664/133956103-11c57d64-7d30-4793-b7c6-f57f7e14ae7e.png)
 
 
 
-## 7.Handler수정 : 삽입결과를 화면에 출력
+## 7.Handler수정 : 삽입성공여부에 따른 입력란 초기화
 
 삽입 성공시 입력란 초기화 + 키보드 제거하도록 Handler를 수정해줍니다.
 
@@ -1945,6 +1945,6 @@ Handler handler = new Handler(Looper.getMainLooper()){
 
 
 
-## 8.삽입결과 화면확인
+## 8.삽입성공후의 화면확인
 
 ![ezgif com-gif-maker](https://user-images.githubusercontent.com/58774664/133938925-bc2666b3-4c27-4b9a-9f31-96bcece22a5f.gif)
