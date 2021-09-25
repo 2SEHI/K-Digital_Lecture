@@ -312,7 +312,7 @@ class MLP_Model(tf.keras.Model):
 
 
 
-소스코드 : [CNNModeling.py](./scr/CNNModeling.py)
+소스코드 : [CNNModeling.py](./src/CNNModeling.py)
 
 ```python
 def createModel(self):
@@ -522,9 +522,9 @@ INFO:tensorflow:Assets written to: /tmp/tmplife93gn/assets
 
 # 3.기기 배포
 
-[🔢숫자 분류 Android App만들기](../0924_Android(tflite)/1_기기배포-ViewDrawingDigitClassifier)
+[🔢숫자 분류 Android App만들기](../0924_Android(tflite)/1_기기배포-ViewDrawingDigitClassifier.md)
 
-[갤러리와 카메라로 촬영한 이미지 분류 앱 만들기](../0924_Android(tflite)/2_기기배포-ImageClassfier)
+[갤러리와 카메라로 촬영한 이미지 분류 앱 만들기](../0924_Android(tflite)/2_기기배포-ImageClassfier.md)
 
 
 
