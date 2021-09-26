@@ -8,7 +8,7 @@
 
 - [File]-[New]-[NewProject]-[empty Activity]선택-[Name]:PythonUse 로 설정, Android 10.0선택 - [Finish]
   - Primary/Detail Flow, Responsive Activity는 태블릿에서 사용합니다.
-  - [Package name]에 example이 들어가면 배포가 안되므로 정식서비스 배포할 프로젝트라면 변경해주어야 합니다.
+  - [Package name]을 설정할 때 기본으로 설정되는 com.example.xxxx 부분에서 example 또는 test가 포함되면  나중에 app market에 배포가 안되므로 정식서비스 배포할 프로젝트라면 다른 것으로 변경해주어야 합니다.
 
 
 
