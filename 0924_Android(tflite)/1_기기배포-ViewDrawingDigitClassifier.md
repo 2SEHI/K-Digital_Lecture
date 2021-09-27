@@ -1,4 +1,4 @@
-# tflite모델을 생성하여 Android에서 모델 사용하기
+## tflite모델을 생성하여 Android에서 모델 사용하기
 
 - [Model 생성하여 tflite파일 저장](../0923_Android(DLModeling)/1_Android%20DLModeling.md)
 - [기기 배포 - 🔢숫자 분류 Android App만들기](#)
@@ -11,6 +11,8 @@
 [지난 시간에 Model을 생성하여 tflite파일로 변환까지](../0923_Android(DLModeling)/1_Android%20DLModeling.md) 해보았습니다. 
 
 이번 시간에는 변환된 tflite파일을 Android에 저장하여 View 위에 숫자를 그려서 어떤 숫자인지 분류하는 Android App 만들어봅니다.
+
+전체 소스 : [https://github.com/2SEHI/ViewDrawingDigitClassifier](https://github.com/2SEHI/ViewDrawingDigitClassifier)
 
 
 
@@ -122,7 +124,7 @@ dependencies {
 
 🐘setting.gradle
 
-```json
+```
 repositories {
     ...
 	maven{url 'https://jitpack.io'}
@@ -146,7 +148,7 @@ module의 🐘build.gradle을 보면 dependencies가 있는데 이 곳에 외부
 
 module 수준의 🐘build.gradle
 
-```json
+```
 dependencies {
 
     implementation 'androidx.appcompat:appcompat:1.3.1'
@@ -166,7 +168,7 @@ dependencies {
 
 module 수준의 🐘build.gradle
 
-```json
+```
 dependencies {
     ... 
     // draw 라이브러리 추가
@@ -188,7 +190,7 @@ dependencies {
 
 
 
-# 4.tflite모델을 📂assets에 위치시키기
+# 4.📃tflite모델을 📂assets에 위치시키기
 
 ## 1) 📂assets 디렉토리 생성
 
@@ -209,7 +211,7 @@ dependencies {
 
 ## 2) 📃tflite모델을 📂assets에 붙여넣기💦
 
-[지난 시간에 생성한 tflite모델](../0923_Android(DLModeling)/1_Android%20DLModeling.md#2-모델-생성 )을 📂assets 디렉토리에 위치시킵니다.
+[지난 시간에 생성한 tflite모델](../0923_Android(DLModeling)/1_Android%20DLModeling.md#2모델-변환 )을 📂assets 디렉토리에 위치시킵니다.
 
 - 처음부터 프로젝트에 tflite모델을 포함시키지 않고 cliente가 앱을 실행할 때 서버에서 다운로드 받아도 됩니다.
 
@@ -239,7 +241,7 @@ app
 
 module 수준의 🐘build.gradle
 
-```json
+```
 dependencies {
 	..중략..
     
@@ -559,6 +561,10 @@ public class DrawActivity extends AppCompatActivity {
 
 
 
+## 4) MainView에서 DrawView로 이동 확인
+
+![MainToDrawing](https://user-images.githubusercontent.com/58774664/134893826-d4d67510-71ad-4e03-92a6-54de87320029.gif)
+
 # 7.숫자를 분류하는 📄Classifier.java 설정
 
 📃tflite모델을 불러와 이미지를 분류하고 결과를 DrawActivity.java에 반환해주는 처리를 구현합니다.
@@ -754,19 +760,19 @@ protected void onCreate(Bundle savedInstanceState) {
 
 
 
-## 7) 📄Classifier.java에 이미지 전처리 구현 💦ARGB8888?
+# 8. 📄Classifier.java에 이미지 전처리 구현 💦ARGB8888?
 
 안드로이드의 VIew 에서 가져온 이미지는 크기가 디바이스마다 다르기는 하지만 가로와 세로 해상도 중에서 작은 쪽의 해상도를 가로와 세로로 갖는 이미지가 됩니다.
 
 ARGB8888 모드로 만들어집니다.
 
-우리가 사용할 모델은 28* 28 의 GrayScale이미지를 처리하므로 이미지의 크기를 조절하고 색상도 흑백으로 수정해야 합니다.
+우리가 사용할 모델은 28 * 28 의 GrayScale 이미지를 처리하므로 이미지의 크기를 조절하고 색상도 흑백으로 수정해야 합니다.
 
 
 
-#### 이미지 전처리를 위한 변수 선언
+## 1) 이미지 전처리를 위한 변수 선언
 
-- 가로, 세로 크기, 채널수 를 저장할 변수를 선언합니다.
+- 가로 크기, 세로 크기, 채널수 를 저장할 변수를 선언합니다.
 
 
 
@@ -779,7 +785,7 @@ int modelInputWidth, modelInputHeight, modelInputChannel;
 
 
 
-#### 변수에 값을 설정하는 initModelShape메소드 추가
+## 2) 변수에 값을 설정하는 initModelShape메소드 추가
 
 - 나중에 init메소드에서만 호출할 것이므로 private 접근제한을 설정합니다.
 
@@ -804,7 +810,11 @@ private void initModelShape(){
 
 
 
-#### init메소드에 initModelShape메소드 호출
+## 3) init메소드에 initModelShape메소드 호출
+
+
+
+📄Classifier.java
 
 ```java
 // 사용자 정의 초기화 메소드
@@ -818,7 +828,14 @@ public void init() throws  IOException{
 
 
 
-#### 이미지 크기를 변환하는 메소드를 생성
+## 4) 이미지 크기를 변환하는 메소드를 생성
+
+- bitmat을 modelInputWidth, modelInputHeight 크기로 변환합니다.
+-  filter는 최근접 보간법을 사용
+  -  보간법은 이미지를 늘릴 때 사용할 방법
+- 마지막 인자값은 보간법에 대한 설정인데 보간법은 이미지를 확대할 경우에 필요한 것으로 현재는 이미지를 줄이는 것이므로 false로 설정합니다.
+
+📄Classifier.java
 
 
 ```java
@@ -834,9 +851,9 @@ private Bitmap resizeBitmap(Bitmap bitmap){
 }
 ```
 
-세번째 인자값은 보간법에 대한 설정인데 보간법은 이미지를 확대할 경우에 필요한 것으로 현재는 이미지를 줄이는 것이므로 false로 설정합니다.
 
-##### ** 보간이란?
+
+### 📌보간이란?
 
 보간은 이미지를 확대할 때 Hole을 채우는 방법입니다.
 
@@ -847,19 +864,24 @@ private Bitmap resizeBitmap(Bitmap bitmap){
 - bilinear Interpolation 선형보간 
   - 주변 4개의 거리와 값을 같이 적용하여 선형보간 설정
 
-##### ** Bitmap이란?
+### 📌Bitmap이란?
 
-이미지를 메모리에 적재한 것으로 Byte 의 
-
-
+컴퓨터 분야에서 디지털 이미지를 저장하는데 쓰이는 이미지 파일 포맷 또는 메모리 저장 방식의 한 형태를 의미합니다.
 
 
 
-### 이미지 채녈과 포맷 변환
 
-RGB -> Gray 로 변환 ,RGB의 평균을 이용해서 GRay로 변환합니다.
+
+## 5) 이미지 채널과 포맷 변환
+
+RGB의 평균을 이용해서 RGB에서 Gray로 변환합니다.
+
+
+
+📄Classifier.java
 
 ```java
+
     // 컬러 이미지를 흑백으로 변환하는 메소드
     private ByteBuffer convertBitmapToGrayByteBuffer(Bitmap bitmap){
 
@@ -896,32 +918,27 @@ RGB -> Gray 로 변환 ,RGB의 평균을 이용해서 GRay로 변환합니다.
     }
 ```
 
-argb의 경우 빨간색은 다음 과 같은 설정이 됩니다.
 
-A R G B 
 
-`11111111 11111111 00000000 00000000`
+- A R G B의 경우 빨간색은 다음 과 같은 설정이 됩니다.
 
-R값을 뽑고 싶을 때는 오른쪽으로 16번 shift하여 and연산
+  `11111111 11111111 00000000 00000000`
 
-G값을 뽑고 싶을 때는 오른쪽으로 8번 shift하여 and연산
-
-B값을 뽑고 싶을 때는  shift하지 않고 and연산
+  - R값을 뽑고 싶을 때는 오른쪽으로 16번 shift하여 and연산
+  - G값을 뽑고 싶을 때는 오른쪽으로 8번 shift하여 and연산
+  - B값을 뽑고 싶을 때는  shift하지 않고 and연산
 
 
 
-#### Log 출력
-
-// 디버깅(테스트)을 할 때는 이 코드가 유효해서 아래 콘솔창에 출력하지만
-// 빌드해서 배포(release)할 때는 Log코드는 전부 제거됩니다
-// 그래서 로그를 찍을 때는 System.out이 아닌 Log를 이용하여 불필요한
-// 출력을 줄이는 것이 좋습니다.
 
 
+## 6) 출력을 위한 인스턴스 변수 선언
 
-### 출력을 위한 인스턴스 변수 선언
+initModelShape()메소드에 modelOutputClasses의 값을 설정하는 코드를 추가해줍니다.
 
-initModelShape메소드에 modelOutputClasses의 값을 설정하는 코드 작성
+
+
+📄Classifier.java
 
 ```java
 public class Classifier {
@@ -944,7 +961,7 @@ public class Classifier {
 
 
 
-### 추론과 추론해석을 위한 메소드
+## 7) 추론과 추론해석을 위한 메소드 💦챗봇의 경우?
 
 챗봇의 경우 ~ 를 String으로 변경하면 됩니다.
 
@@ -993,11 +1010,13 @@ public class Classifier {
 
 
 
-### setOnClickListener메소드 수정 : classifyBtn클릭시 추론-> 결과 출력
+## 8) onClick메소드 수정 : classifyBtn클릭시 추론-> 결과 출력
 
-DrawActivity 클래스의 왼쪽 버튼(classifyBtn)을 눌렀을 때 추론하고 결과를 화면에 출력하도록 수정합니다.
+DrawView에서 왼쪽 버튼(classifyBtn)을 눌렀을 때 추론하고 결과를 화면에 출력하도록 📄DrawActivity.java를 수정합니다.
 
 
+
+📄DrawActivity.java
 
 ```java
 // classifyBtn을 클릭했을 때 처리
@@ -1007,10 +1026,6 @@ classifyBtn.setOnClickListener(new View.OnClickListener() {
         // DrawView에 그린 내용을 읽어오기
         Bitmap image = drawView.getBitmap();
         // image가 null일 경우 에러가 납니다.
-        // 디버깅(테스트)을 할 때는 이 코드가 유효해서 아래 콘솔창에 출력하지만
-        // 빌드해서 배포(release)할 때는 Log코드는 전부 제거됩니다
-        // 그래서 로그를 찍을 때는 System.out이 아닌 Log를 이용하여
-        // 불필요한 출력을 줄이는 것이 좋습니다.
         Log.e("image", image.toString());
 
         // 추론
@@ -1025,3 +1040,15 @@ classifyBtn.setOnClickListener(new View.OnClickListener() {
 });
 ```
 
+
+
+### 📌Log 출력
+
+디버깅(테스트)을 할 때는 이 코드가 유효해서 아래 콘솔창에 출력하지만 빌드해서 배포(release)할 때는 Log코드는 전부 제거됩니다
+그래서 로그를 찍을 때는 System.out이 아닌 Log를 이용하여 불필요한 출력을 줄이는 것이 좋습니다.
+
+
+
+# 9.DrawView 분류 확인
+
+![Drawing](https://user-images.githubusercontent.com/58774664/134893833-9101bc7b-1597-45a8-bb1f-4c86f9b0a81e.gif)
