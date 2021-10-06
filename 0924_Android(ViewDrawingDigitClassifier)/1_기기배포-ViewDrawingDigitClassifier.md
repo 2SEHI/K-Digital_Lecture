@@ -565,6 +565,8 @@ public class DrawActivity extends AppCompatActivity {
 
 ![MainToDrawing](https://user-images.githubusercontent.com/58774664/134893826-d4d67510-71ad-4e03-92a6-54de87320029.gif)
 
+
+
 # 7.숫자를 분류하는 📄Classifier.java 설정
 
 📃tflite모델을 불러와 이미지를 분류하고 결과를 DrawActivity.java에 반환해주는 처리를 구현합니다.

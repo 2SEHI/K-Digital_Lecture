@@ -524,9 +524,13 @@ INFO:tensorflow:Assets written to: /tmp/tmplife93gn/assets
 
 # 3.기기 배포
 
-[🔢숫자 분류 Android App만들기](../0924_Android(tflite)/1_기기배포-ViewDrawingDigitClassifier.md)
+[🔢숫자 분류 Android App만들기](../0924_Android(ViewDrawingDigitClassifier)/1_기기배포-ViewDrawingDigitClassifier.md)
 
-[갤러리와 카메라로 촬영한 이미지 분류 앱 만들기](../0924_Android(tflite)/2_기기배포-ImageClassfier.md)
+[갤러리와 카메라로 촬영한 이미지 분류 앱 만들기](../0928_Android(ImageClassfier)/2_기기배포-ImageClassfier.md)
+
+[실시간으로 object detection](../0930_Android(RealtimeImageClassfication)/3_기기배포-Android(object detection).md)
+
+
 
 
 
