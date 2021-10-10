@@ -8,11 +8,13 @@
 
 서버에서 동작하는 애플리케이션들이 제대로 동작 - Docker에서 서버용 애플리케이션을 설치해서 사용
 
+
+
 ## 1.과거의 서버 임대
 
 - 운영체제나 애플리케이션 환경이 구축된 하드웨어를 임대하는 형식
 
-- 데이터베이스를 변경하거나 특정 개발 방법을 적용하는 것이 어려웠습니다.(레거시함)
+- 데이터베이스를 변경하거나 특정 개발 방법을 적용하는 것이 어려웠습니다.(레거시)
 
   👉 이 때문에 운영체제 제외 또는 설치된 상태에서 필요한 애플리케이션만 적재하는 형태로 변경되어 가고 있습니다.
 
@@ -26,11 +28,31 @@
 
 개발 환경과 운영 환경이 다름으로 인한 문제가 발생하였습니다
 
-### [📌 SI와 SM 직군에 대하여](././추가설명.md/#SI와-SM)
+
 
 👉 때문에 개발 환경과 운영 환경을 동일하게 설정해두고 개발하는 것을 선호하게 되었는데 운영체제까지 일치시켜서 하는 것은 좋은 컴퓨터가 있어야 할 가능성이 높고 운영체제에 대해서 공부를 해야합니다.
 
 - 서버(운영환경)의 운영체제가 Linux 인 경우가 많아서 Linux 에서 애플리케이션 실행에 필요한 부분만 별도로 만들고 애플리케이션을 설치해서 사용할 수 있는 Docker 를 많이 사용하게 되었습니다.
+
+
+
+### 📌 SI와 SM 직군에 대하여
+
+#### SI(시스템 통합 - Developer) 
+
+- 고객이 요구하는 서비스를 대신 구현
+- 고객의 의견을 들으면서 개발
+- 실제 작업은 대부분 노트북에서 수행 - 고객사로 가는 것은 고객의 의견을 듣기 위해서 입니다.
+
+
+
+#### SM(시스템 운영 및 유지보수 - Operator) 
+
+- 개발된 서비스를 운영하고 관리하고 유지보수 하는 작업
+- 파견을 나가서 하는 경우가 많았는데 데이터의 중요성 때문에 직접 채용하는 경우가 많습니다
+- 파견을 받아도 오랜 기간 동안 근무할 수 있는 경우가 많습니다
+- 직접 채용을 위해서 IT기업 중 큰 곳은 자회사(KB system, KT DS..)를 가지고 있습니다
+- SM은 신입을 잘 안쓰는데 이미 만들어진 자원을 학습시켜야 하기 때문입니다.
 
 
 
@@ -40,18 +62,18 @@
 
 - Mac을 사용하는 사람은 관리까지는 아니더라도 필요한 애플리케이션을 설치하는 방법까지는 알아두는 것이 좋습니다.
 - 이런 부분을 자신의 컴퓨터가 아닌 곳에서 할 수 있도록 해주는 서비스가 public cloud입니다.
-- 기술이 빠르게 바뀌므로 책으로 공부하기 쉽지 않습니다.
+- 기술이 빠르게 바뀌므로 책보다는 웹에서 찾아 공부하는 것이 좋습니다.
 
 
 
-## 4.장점
+## 4.Docker의 장점
 
 - 개발환경과 운영환경을 동일하게 맞추는 작업이 쉽습니다.
 
 - 가상화 솔루션보다는 가볍게 동작합니다.
 - 리눅스 기반
   - 리눅스를 사용하지 않는 경우
-    - 리눅스 자체를 공부하고자 하는 경우 기존의 VMWare 나 Virtual Box를 이용하는 것이 좋습니다. 에디터조차도 직접 만들어야 하기 때문에 불편합니다.
+    - 리눅스 자체를 공부하고자 하는 경우 기존의 VMWare 나 Virtual Box를 이용하는 것이 좋습니다. 대신에 에디터조차도 직접 만들어야 하기 때문에 불편합니다.
     - 운영(서버) 환경이 리눅스 이외의 환경인 경우 
 - Mac OS에서는 동작하지 않는 소프트웨어들이 종종 있어서 사용해보고자 하는 경우 Docker나 VMWare를 이용하는경우도 있습니다.
   - 동작하지 않는 소프트웨어 : Oracle
@@ -73,7 +95,15 @@
   - Map Reduce 의 단점을 보완하기 위한 플랫폼으로 데이터 분석 라이브러리를 제공합니다.
   - Java, Scala, Python, R 등의 다양한 프로그래밍 언어를 지원합니다
 
-  [📌프로그래밍 언어](./추가설명.md/#프로그래밍-언어)
+  
+
+### 📌프로그래밍 언어
+
+- Java를 잘 하는데 분석을 하기 위해서 다른 언어를 배울 필요는 없으며 **구현 도구보다도 중요한 것은 평가지표나 분석 방법입니다.**
+- 딥러닝은 Python이나 C++ 을 배우는 것이 좋습니다.
+- 이론적인 배경을 잘 배워서 논문을 읽을 때는 논문 쓰는 방법을 생각하며 보지 말고 왜 어떻게? 라는 것을 생각하며 읽는 것이 중요합니다.
+- 중견기업이 목표라면 배민, 네이버 등이 서버쪽 언어를 Kotlin으로 많이 하므로 Kotlin 을 배우는 것이 좋습니다. 
+- 보다 작은 기업은 node 를 많이 사용합니다.
 
 
 
@@ -83,19 +113,16 @@
 
 - VM Ware 나 Vitual Box 가 대표적인데 이런 소프트웨어들은 운영체제를 직접 설치해서 환경을 구성합니다. 
 
-- 아이폰 앱개발을 해보고 싶은데 Mac 이 없는 경우는 VM Ware 에 Mac OS 10 이미지를 올려서 구현해볼 수 있습니다. 그러나 가상화 소프트웨어에서는 인증서를 만들 수 없기 때문에 마켓에는 올릴 수가 없습니다.
+- 아이폰 앱개발을 해보고 싶은데 Mac 이 없는 경우는 VM Ware 에 Mac OS 10 이미지를 올려서 구현해볼 수 있습니다. 그러나 가상화 소프트웨어에서는 인증서를 만들 수 없기 때문에 마켓에 올릴 수가 없습니다.
 
 
 
 ## 2.Docker 와 가상화 소프트웨어의 차이
 
-Docker는 Linux 가 설치된 것처럼 애플리케이션만 별도로 설치를 해서 사용하고 애플리케이션들이 독립적으로 구성됩니다.
-
-Docker가 기존 가상화 소프트웨어보다 더 가볍습니다.
-
-Docker 로는 Linux 이외의 환경을 설정할 수 없고 Linux 자체 명령어를 사용하고자 하면 별도로 설치를 해야 합니다.
-
-Linux 를 공부하거나 다른 서버용 운영체제 환경을 사용하고자 하는 경우에는 Docker를 사용하지 않고 기존 가상화 소프트웨어를 사용해야 합니다.
+- Docker는 Linux 가 설치된 것처럼 애플리케이션만 별도로 설치를 해서 사용하고 애플리케이션들이 독립적으로 구성됩니다.
+- Docker가 기존 가상화 소프트웨어보다 더 가볍습니다.
+- Docker 로는 Linux 이외의 환경을 설정할 수 없고 Linux 자체 명령어를 사용하고자 하면 별도로 설치를 해야 합니다.
+- Linux 를 공부하거나 다른 서버용 운영체제 환경을 사용하고자 하는 경우에는 Docker를 사용하지 않고 기존 가상화 소프트웨어를 사용해야 합니다.
 
 
 
@@ -846,3 +873,201 @@ apt-get upgrade
 
 
 
+# Docker에서 Oracle 사용
+
+- 오라클은 18ver이전 과 이후의 설치 방법이 다릅니다
+  - 18ver 이전은 이미지를 다운로드 받아서 설치했습니다.
+  - 18ver 부턴 이미지를 직접 생성해서 설치해야 합니다.
+
+- 이미 설치한 상태라면, Window-[서비스]에서 Oracle 관련 애플리케이션을 수동 설정하고 사용중지 해야 port가 겹치지 않습니다.
+
+
+
+## 1.express edition 버전 다운로드
+
+[Oracle 18c 다운로드 사이트](https://www.oracle.com/database/technologies/oracle-database-software-downloads.html#19c) 에 접속해서 Linux 버전의 오라클 18c 의 express edition 버전을 다운로드합니다.
+
+- `oracle-database-xe-18c-1.0-1.x86_64.rpm` 파일이 다운로드 받아집니다.
+
+
+
+## 2.C드라이브에 rpm파일 이동
+
+C드라이브 밑에 📂oracle이라는 폴더를 생성하고 `C:\oracle` 에 `oracle-database-xe-18c-1.0-1.x86_64.rpm` 파일을 이동시킵니다.
+
+
+
+## 3. Oracle docker 파일 다운로드
+
+- [Oracle의 git 사이트](https://github.com/oracle/docker-images)에서 docker zip파일을 다운받습니다
+
+- zip파일을 압축해제 하고 `\docker-images-main\OracleDatabase\SingleInstance\dockerfiles\18.4.0`에 위치한 파일들을  `oracle-database-xe-18c-1.0-1.x86_64.rpm` 이 있는 `C:\oracle`으로 복사합니다
+
+
+
+## 4.이미지 빌드
+
+터미널에서 다운로드 받은 파일이 있는 곳으로 프롬프트를 옮기고  Dockerfile.xe파일을 실행시켜서 이미지를 생성합니다.
+
+### 1) 프롬프트이동
+
+```
+cd c:\oracle
+```
+
+### 2) 이미지 생성
+
+```
+docker build -t oracle/database:18.4.0-xe -f Dockerfile.xe .
+```
+
+
+
+## 5.생성된 이미지 확인
+
+```
+docker images
+```
+
+
+
+## 6.이미지 실행
+
+- 2개의 포트 포워딩을 해야하는데  8080번(=5500)과 1521번입니다.
+  - 8080  :  오라클이 사용하는 자체 포트
+  - 1521 : 오라클에 외부 접속하기 위해 사용하는 포트
+- 다른 웹에 관련된 애플리케이션이 없다면 👉 8080은 그대로 사용
+- 다른 오라클이 없다면 👉 1521번을 그대로 사용
+
+
+
+### 1) MAC의 경우
+
+```
+docker run --name myoracle -p 1521:1521 -p 5500:5500 e ORACLE_PWD=wnddkd -v $PWD/mount/data:/opt/oracle/oradata oracle/database:18.4.0-xe
+```
+
+
+
+### 2) Windows
+
+Windows에서는 $PWD 대신에 다른 경로로 변경합니다.
+
+```
+docker run --name myoracle -p 1521:1521 -p 5500:5500 e ORACLE_PWD=wnddkd -v C:\oracle/mount/data:/opt/oracle/oradata oracle/database:18.4.0-xe
+```
+
+👉`-d` 옵션 : 이 옵션을 설정하면 백그라운드에서 실행되며,  설정을  안 하면 포그라운드에서 실행됩니다.
+
+
+
+
+
+# Docker에서 MySQL사용
+
+- mySQL도 Oracle 과 마찬가지로 이미 설치한 상태라면, Window-[서비스]에서 Oracle 관련 애플리케이션을 수동 설정하고 사용중지 해야 port가 겹치지 않습니다.
+
+## 1.mySQL 다운로드
+
+```
+docker pull mysql
+```
+
+
+
+## 2.mySQL 이미지 실행
+
+```
+docker run --name mysqlserver -e MYSQL_ROOT_PASSWORD=1234 -d -p 3306:3306 mysql:latest
+```
+
+만약에 아래와 같은 에러가 난다면 이미 컨테이너가 존재하므로 image 를 `run`할 필요가 없고, 3번으로 넘가도 됩니다.
+
+```
+docker: Error response from daemon: Conflict. The container name "/mysqlserver" is already in use by container "7325cfff3786cdbbac85fdcc743dc7025ead1b6". You have to remove (or rename) that container to be able to reuse that name.
+```
+
+
+
+## 3.mySQL 실행
+
+```
+docker exec -it mysqlserver bash
+```
+
+
+
+### 1) mySQL root접속
+
+```
+mysql -u root -p
+```
+
+![image](https://user-images.githubusercontent.com/58774664/136690082-db50409c-3dc2-4987-a9c3-32a7e514da23.png)
+
+
+
+## 2) database 확인
+
+```
+show databases;
+```
+
+
+
+![image](https://user-images.githubusercontent.com/58774664/136690156-aa734c6b-2200-4385-8d95-b013484b99d3.png)
+
+## 3) database 생성
+
+`docker_test` 라는 이름의 데이터베이스를 생성해봅니다
+
+```
+create database docker_test;
+```
+
+
+
+### 4) user생성
+
+```
+create user 'user00'@'%' identified by 'user00';
+```
+
+- 생성한 user로 접속
+
+```
+mysql -u user00 -p;
+```
+
+
+
+### 5) 생성한 user에 권한 부여
+
+```
+grant all privileges *.* to 'user00'@'%';
+```
+
+- 생성한 user에 외부 접속 허용
+
+```
+alter user 'user00'@'%' identified with mysql_native_password by 'user00';
+```
+
+```
+flush privileges
+```
+
+
+
+# Docker 에서 알아둘 만한 내용
+
+- Docker가 무엇인지 
+  - 다른 가상화 소프트웨어와의 차이는 무엇인지
+  - image 와 Container의 차이
+  - Image 를 검색해서 다운로드 받고 컨테이너로 만들어서 실행하는 방법은?
+
+- 클라우드 플랫폰 개발자가 되고자 하는 경우에는 이미지를 생성하고 push할 수 있고 쿠버네티스를 공부하면 됩니다.
+- OpenCV 를 공부하고자 하는 경우는 C++도 고려를 해봐야 합니다.
+  - 이 경우 되도록이면 Visual C++ 보다는 ANSI - C기반에서 해보는 것이 좋습니	다.
+- Windows에서는 VMWare Player, Mac에서는 VMware Fusion를 설치해서 사용합니다
+  - 또는 VMWare 대신에 Virtual Box를 사용해도 됩니다.
