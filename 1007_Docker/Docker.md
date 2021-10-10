@@ -4,8 +4,6 @@
 
 
 
-
-
 # Docker를 사용하는 이유
 
 서버에서 동작하는 애플리케이션들이 제대로 동작 - Docker에서 서버용 애플리케이션을 설치해서 사용
@@ -45,6 +43,18 @@
 - 기술이 빠르게 바뀌므로 책으로 공부하기 쉽지 않습니다.
 
 
+
+## 4.장점
+
+- 개발환경과 운영환경을 동일하게 맞추는 작업이 쉽습니다.
+
+- 가상화 솔루션보다는 가볍게 동작합니다.
+- 리눅스 기반
+  - 리눅스를 사용하지 않는 경우
+    - 리눅스 자체를 공부하고자 하는 경우 기존의 VMWare 나 Virtual Box를 이용하는 것이 좋습니다. 에디터조차도 직접 만들어야 하기 때문에 불편합니다.
+    - 운영(서버) 환경이 리눅스 이외의 환경인 경우 
+- Mac OS에서는 동작하지 않는 소프트웨어들이 종종 있어서 사용해보고자 하는 경우 Docker나 VMWare를 이용하는경우도 있습니다.
+  - 동작하지 않는 소프트웨어 : Oracle
 
 
 
@@ -109,11 +119,44 @@ Linux 를 공부하거나 다른 서버용 운영체제 환경을 사용하고�
 
 # Docker 설치
 
-- 도커 허브 사이트에서 운영체제에 맍는 설치 파일을 다운로드 받아서 설치합니다.
+## 1) 운영체제 호환
+
+- UNIX - Mac OS X, iOS 등
+
+- LINUX - Android 등
+
+- MS-DOS : Windows
+
+예전에는 서버용 운영체제로 UNIX를 가장 많이 사용했는데 호환성 문제때문에 최근에는 Linux가 압도적으로 많이 사용됩니다.
+
+Windows나 Mac도 서버용 운영체제가 있는데 Windows는 비중이 많이 약해졌고 Mac은 더이상 서버용 운영체제를 업데이트하지 않습니다. 
+
+_개발자라면 Windows 홈에디션 말고 프로페셔널 설치하세요_
+
+
+
+## 2) 가상화 설정확인
+
+### Windows의 경우 가상화 설정 확인
+
+- CPU 가상화 설정이 되어야 합니다.
+
+- ctrl + alt + Delete - 작업관리자 성능 에서 가상화 확인 가능
+
+- 설정이 안되어 있으면 컴퓨터를 부팅할 때 운영체제가 시작하기 전에 BIOS 설정해서 수정을 해주어야 합니다.
+
+- 최근의 컴퓨터는 기본 설정이 되어 있습니다.
+
+- https://www.intel.co.kr/content/www/kr/ko/support/articles/000005495/processors.html 에 접속하여 자신의 프로세서를 입력하고 가상화사용이 가능한지 확인해도 됩니다.
+
+  
+
+## 3) 설치파일 다운로드
+
+- [도커 허브 사이트](https://hub.docker.com/)에서 계정생성하고 운영체제에 맞는 설치파일 다운로드 받기
+
 -  Windows 컴퓨터에서는 Hyper - V 기능이 설정되어 있는지 확인합니다.
   - Windows 업데이트를 해야 하는 경우도 있고 몇 개의 파일을 더 설치해야 하는 경우도 있습니다.
-
-### [📌 Docker 설치 방법 참고]()
 
 
 
@@ -503,6 +546,303 @@ docker image build -t 이미지이름:[:버전이름] Dockfile의 경로
 ### 📌애플리케이션 개발자가 알아두면 쓸모가 많은 애플리케이션
 
 - 개발자가 되고 싶다면 jenkins 는 반드시 알아두어야 합니다.
-
 - 그 밖에 git, slack
-- JIRA, zepplin
+- 작업관리툴 : CI(지속적인 통합) 서비스를 제공하는 툴
+  - jenkins : (build를 해주는 협업필터링
+  - JIRA
+
+- zeppelin : 웹 기반 notebook이며 시각화 tool
+
+
+
+### 1) jenkins 다운로드
+
+#### -  jenkins 검색
+
+```
+docker search jenkins
+```
+
+![image](https://user-images.githubusercontent.com/58774664/136681774-322faba1-f67d-4b3d-bf44-b7ab4eca6e7f.png)
+
+
+
+#### - jenkins image 다운로드
+
+```
+docker image pull jenkins/jenkins
+```
+
+#### - jenkins 다운로드 확인
+
+```
+docker image ls
+```
+
+
+
+![image](https://user-images.githubusercontent.com/58774664/136681906-f4375625-6f60-49df-9bcd-fb10e44e9644.png)
+
+
+
+## 5. 업로드
+
+- 자신이 만든 이미지를 다른 사용자가 사용할 수 있도록 docker hub에 공개하는 것으로 대부분의 경우는 애플리케이션 개발 회사가 많이 합니다.
+  - 예를들어 mac에 오라클을 설치할 수가 없는데 오라클에서는 docker 를 이용하여 mac 이용자들도 오라클을 이용할 수 있도록 합니다.
+
+```
+docker image push 이미지이름
+```
+
+
+
+## 6.이미지 이름변경
+
+```
+docker image tag 원래이름 변경할이름
+```
+
+
+
+## 7. 이미지 배포
+
+example/echo 이미지를 배포해봅니다.
+
+### 1) 이미지 이름변경
+
+배포를 하기전에 이미지 이름을 변경합니다. 계정id를 이용하여 이름을 변경합니다
+
+- 변경전 : example/echo:latest
+- 변경후 : krsehi2/echo:latest
+
+```
+docker image tag example/echo:latest krsehi2/echo:latest
+```
+
+
+
+### 2) 이미지 업로드(배포)
+
+```
+docker image push krsehi2/echo:latest
+```
+
+
+
+### 3) 이미지 배포 확인
+
+- 방법1
+
+[https://hub.docker.com/](https://hub.docker.com/)에 접속하여 배포된 이미지를 확인합니다.
+
+![image](https://user-images.githubusercontent.com/58774664/136682757-d093343a-2694-4a76-9ad5-3f7ceb126a0e.png)
+
+- 방법2
+
+명령어창에서 search 하여 확인할 수도 있습니다.
+
+```
+docker search 계정id
+```
+
+
+
+![image](https://user-images.githubusercontent.com/58774664/136682838-c22ac91f-3649-4a16-843a-cbeb983bfbd2.png)
+
+
+
+
+
+## 8.Container 관련 명령
+
+### 1) 실행
+
+- `-d` 옵션을 이용하면 백그라운드에서 실행합니다.
+- `-name` 옵션을 이용하면 Container에 이름부여하는 것이 가능합니다.
+- `-rm` 옵션은 Container 를 중지하면 Container 를 삭제합니다.
+  - 보통은 Container가 남아있는데 중지하면서 삭제하고 싶을때 사용합니다.
+
+```
+docker container run 옵션 이미지이름:버전이름
+```
+
+
+
+### 2) 목록 확인
+
+- 옵션이 없으면 실행 중인 컨테이너만 조회합니다
+
+- `-a` 옵션을 사용하면 종료된 컨테이너도 조회할 수 있습니다.
+
+```
+dcoker container ls 옵션
+```
+
+
+
+### 3) 중지
+
+```
+docker container stop 컨테이너ID(또는 이름)
+```
+
+
+
+### 4) 재시작
+
+```
+docker container restart 컨테이너ID(또는 이름)
+```
+
+
+
+### 5) 삭제💦(실행중인 컨테이너 포함?)
+
+```
+docker container rm 컨테이너ID(또는 이름)
+```
+
+- 모든 컨테이너 삭제(실행중인 컨테이너 포함?)
+
+```\
+docker container rm -f $(docker ps -a)
+```
+
+- 모든 이미지 삭제
+
+```
+docker rmi $(docker images -q)
+```
+
+- 실행 중이지 않은 컨테이너나 이미지 파기
+
+```
+docker container 또는 image prune
+```
+
+
+
+### 6) 여러 개의 Container 의 실행
+
+1. yaml 파일 포맷으로 명령어를 작성한 후 docker-compose.yml 로 저장
+
+2. docker-compose.yml 파일 실행 명령을 수행
+
+```
+docker-compose up -d
+```
+
+- 중지하고자 할 때는 ` up -d` 대신에 `down`를 입력
+
+
+
+# Docker에서 Ubuntu Linux 설치 및 사용
+
+## 1.Ubuntu 이미지 검색
+
+ubuntu를 모두 검색하면 검색 결과가 나머 많으므로 10개만 검색해봅니다
+
+```
+docker search --limit 10 ubuntu
+```
+
+- 검색 결과를 보면 mysql까지 설치된 버전, 또는 php 사용가능한 버전 등의 정보를 알 수 있습니다.
+
+![image](https://user-images.githubusercontent.com/58774664/136683196-af1e37fb-3171-4a0f-ad06-9ed8a1e617f5.png)
+
+
+
+## 2.Ubuntu 다운로드
+
+```
+docker pull ubuntu
+```
+
+![image](https://user-images.githubusercontent.com/58774664/136683314-ac0ee0f9-0292-4495-8714-c6fe59ac7155.png)
+
+
+
+## 3.다운로드 받은 이미지의 컨테이너 생성
+
+```
+docker create -it --name ubuntu_server ubuntu
+```
+
+
+
+## 4.컨테이너와 이미지 확인
+
+### 1) 이미지 확인
+
+```
+docker iamge ls
+```
+
+
+
+![image](https://user-images.githubusercontent.com/58774664/136683497-a5f288c4-b00d-4f7f-822c-2eda58948598.png)
+
+### 2) 컨테이너 확인
+
+```
+docker container ps -a
+```
+
+![image](https://user-images.githubusercontent.com/58774664/136683441-4031b36a-5952-4111-b0ea-3e571f7e7c8a.png)
+
+
+
+## 5.컨테이너 실행
+
+이미 존재하는 컨테이너 시작하는 방법으로 다음에 다시 실행시키려면 restart를 해주면 됩니다.
+
+```
+docker start ubuntu_server
+```
+
+
+
+## 6.컨테이너 접속
+
+```
+docker attach ubuntu_server
+```
+
+![image](https://user-images.githubusercontent.com/58774664/136683561-3e459084-a958-4228-ae73-c9b2cb48318c.png)
+
+
+
+## 7.Linux 명령어 실행
+
+- 설치한 linux 버전 확인
+
+Ubunt 20.04.3 버전인 것을 확인할 수 있습니다.
+
+```
+cat etc/issue
+```
+
+![image](https://user-images.githubusercontent.com/58774664/136683675-e288aade-0fd3-4d39-8ebc-2a032891269f.png)
+
+
+
+- 패키지 업데이트
+
+ 운영체제에서 사용 가능한 패키지들과 그 **버전에 대한 정보를 업데이트**하는 명령어입니다. 설치되어 있는 패키지를 최신으로 업데이트하는 것이 아닌 **설치가능한 리스트**를 업데이트합니다.
+
+``` 
+apt-get update
+```
+
+![image](https://user-images.githubusercontent.com/58774664/136683697-74fc8898-29e8-4c49-9ced-9be96992be05.png)
+
+- 패키지 업그레이드
+
+apt-get upgrade 명령을 이용하면 apt-get update로 가져온 각 패키지들의 최신 버전에 맞게 업그레이드를 gkqslek
+
+```
+apt-get upgrade
+```
+
+
+
