@@ -45,6 +45,7 @@
   - NoSQL
     - mongoDB
 - Ubuntu
+- Docker
 
 
 
@@ -52,4 +53,4 @@
 
 - [디스플레이 센서의 불량품 요인 분석](https://github.com/2SEHI/DisplaySensor-Anomaly-Analysis)
 
-- [전력량 계량기 OCR문자인식](https://github.com/2SEHI/OCR-Text-Detection)
+- [전력량 계량기 OCR문자인식](https://github.com/2SEHI/ElectricityOCRServer)
